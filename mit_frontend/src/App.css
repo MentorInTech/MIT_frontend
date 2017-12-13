@@ -1,28 +1,34 @@
 .App {
   text-align: center;
+  background-color: #E8EAF6;
+  height: 100vh;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+p {
+  margin: 0;
+  padding: 0;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.title {
+  /*font-family: 'Roboto', sans-serif;*/
+  padding-top: 67px;
+  padding-bottom: 16px;
+  font-size: 48px;
+  font-weight: 300;
+  font-style: italic;
 }
 
-.App-title {
-  font-size: 1.5em;
+.sign-up-card {
+  margin: auto;
+  width: 432px;
+  height: 430px;
 }
 
-.App-intro {
-  font-size: large;
+span {
+  color: #ffffff !important;
+  line-height: normal !important;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.card-title {
+  background-color: #3F51B5;
 }
