@@ -21,14 +21,19 @@ p {
 .sign-up-card {
   margin: auto;
   width: 432px;
-  height: 430px;
+  height: 500px;
 }
 
 span {
-  color: #ffffff !important;
   line-height: normal !important;
 }
 
 .card-title {
   background-color: #3F51B5;
+}
+
+.divider {
+  border-color: rgba(0, 0, 0, 0.12);
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
