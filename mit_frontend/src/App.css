@@ -24,6 +24,18 @@ p {
   height: 500px;
 }
 
+.log-in-card {
+  margin: auto;
+  width: 432px;
+  height: 400px;
+}
+
+.forget-password-card {
+  margin: auto;
+  width: 432px;
+  height: 290px;
+}
+
 span {
   line-height: normal !important;
 }
@@ -36,4 +48,9 @@ span {
   border-color: rgba(0, 0, 0, 0.06);
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.forget-password {
+  color: #328AFB;
+  margin: 20px;
 }
