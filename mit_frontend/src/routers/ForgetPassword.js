@@ -35,11 +35,13 @@ class ForgetPassword extends Component {
             />
             <br/>
             <br/>
-            <RaisedButton
-              label="Reset Password"
-              labelColor="#ffffff"
-              backgroundColor={styles.button.color}
-            />
+            <Link to={`/reset-password`}>
+              <RaisedButton
+                label="Reset Password"
+                labelColor="#ffffff"
+                backgroundColor={styles.button.color}
+              />
+            </Link>
             <hr className="divider"/>
             <Link to={`/login`}>
               <RaisedButton
