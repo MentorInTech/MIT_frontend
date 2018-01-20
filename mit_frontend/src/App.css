@@ -42,6 +42,12 @@ p {
   height: 360px;
 }
 
+.user-info-card {
+  margin: auto;
+  width: 432px;
+  height: 880px;
+}
+
 span {
   line-height: normal !important;
 }
