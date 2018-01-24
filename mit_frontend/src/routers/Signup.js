@@ -15,10 +15,11 @@ class Signup extends Component {
      * this.setState()
      */
     this.state = {
-      userName: null,
+      userName: "",
       email: null,
       password: null,
-      confirmPassword: null
+      confirmPassword: null,
+      userNameErrorText: ""
     };
   }
   /**
@@ -30,6 +31,25 @@ class Signup extends Component {
    */
   componentDidUpdate() {
     console.log(this.state);
+  }
+
+  userNameOnChange(event) {
+    this.setState({userName: event.target.value});
+    if (this.state.userName !== "") {
+      this.setState({ userNameErrorText: ""});
+    }
+  }
+  /**
+   * This function is called when sign up button clicked. Will check all the fields, if there
+   * is any empty fields in TextField, highlight the field.
+   */
+  onChange(event) {
+    console.log("clicked!");
+    if (this.state.userName === "") {
+      this.setState({ userNameErrorText: "This field is required"});
+    } else {
+      this.setState({ userNameErrorText: ""});
+    }
   }
   /**
    * This function is required for each react component. Render function returns
@@ -63,9 +83,9 @@ class Signup extends Component {
               floatingLabelFocusStyle={styles.textField.text}
               underlineFocusStyle={styles.textField.underline}
               value={this.state.userName}
-              onChange={
-                (event) => {this.setState({userName: event.target.value})}
-              }
+              errorText={this.state.userNameErrorText}
+              maxLength="10"
+              onChange={ this.userNameOnChange.bind(this) }
             />
             <TextField
               hintText="Email"
@@ -105,6 +125,9 @@ class Signup extends Component {
               label="Sign Up"
               labelColor="#ffffff"
               backgroundColor={styles.button.color}
+              onClick={
+                this.onChange.bind(this)
+              }
             />
             <hr className="divider"/>
             <Link to={`/login`}>
