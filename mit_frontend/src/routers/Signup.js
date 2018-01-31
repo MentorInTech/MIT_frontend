@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2018， Silicon Valley Career Women.
+   All rights reserved.
+ */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -16,9 +20,9 @@ class Signup extends Component {
      */
     this.state = {
       userName: "",
-      email: null,
-      password: null,
-      confirmPassword: null,
+      email: "",
+      password: "",
+      confirmPassword: "",
       userNameErrorText: ""
     };
   }

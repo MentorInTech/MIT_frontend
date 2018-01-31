@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2018， Silicon Valley Career Women.
+   All rights reserved.
+ */
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Signup from './Signup';
