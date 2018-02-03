@@ -1,0 +1,80 @@
+.App {
+  text-align: center;
+  background-color: #E8EAF6;
+  height: 120vh; /*used to 100vh*/
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.title {
+  /*font-family: 'Roboto', sans-serif;*/
+  padding-top: 67px;
+  padding-bottom: 16px;
+  font-size: 48px;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.sign-up-card {
+  margin: auto;
+  width: 432px;
+  height: 500px;
+}
+
+.log-in-card {
+  margin: auto;
+  width: 432px;
+  height: 400px;
+}
+
+.forget-password-card {
+  margin: auto;
+  width: 432px;
+  height: 290px;
+}
+
+.reset-password-card {
+  margin: auto;
+  width: 432px;
+  height: 360px;
+}
+
+.user-info-card {
+  margin: auto;
+  width: 432px;
+  height: 1050px; /*used to be 880px*/
+}
+
+.user-info-card p {
+  text-align: left;
+  padding-top: 35px;
+  padding-left: 35px;
+}
+
+
+input[type='radio'], label {
+  text-align: left;
+  padding-left: 5px;
+}
+
+span {
+  line-height: normal !important;
+}
+
+.card-title {
+  background-color: #3F51B5;
+}
+
+.divider {
+  border-color: rgba(0, 0, 0, 0.06);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.forget-password {
+  color: #328AFB;
+  margin: 20px;
+}
