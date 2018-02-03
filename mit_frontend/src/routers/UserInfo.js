@@ -8,8 +8,27 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import RadioButton from 'material-ui/RadioButton';
 import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
-import '../App.css';
+import '../App.css'; 
 import styles from './styles';
+
+import Geosuggest from 'react-geosuggest';
+import ReactDOM from 'react-dom';
+
+import {connect} from 'react-redux';
+import {Field, reduxForm, formValueSelector} from 'redux-form';
+// import MenuItem from 'material-ui/MenuItem';
+// import {AutoComplete as MUIAutoComplete} from 'material-ui';
+// import {
+//   AutoComplete,
+//   Checkbox,
+//   DatePicker,
+//   TimePicker,
+//   RadioButtonGroup,
+//   SelectField,
+//   Slider,
+//   Toggle,
+// } from 'redux-form-material-ui';
+
 
 // Initiate Job Year
 const jobYears = [];
@@ -90,6 +109,7 @@ class UserInfo extends Component {
              */
             <p>Name</p>
             <TextField
+              errorText="This field is required"
               hintText="First Name"
               floatingLabelText="First Name"
               floatingLabelFocusStyle={styles.textField.text}
@@ -100,6 +120,7 @@ class UserInfo extends Component {
               }
             />
             <TextField
+              errorText="This field is required"
               hintText="Last Name"
               floatingLabelText="Last Name"
               floatingLabelFocusStyle={styles.textField.text}
@@ -133,6 +154,10 @@ class UserInfo extends Component {
               onChange={
                 (event) => {this.setState({city: event.target.value})}
               }
+
+    
+
+
             />
             <p>Job</p>
             <RadioButton
@@ -254,7 +279,15 @@ class UserInfo extends Component {
             <TextField
               hintText="Let me know more about you here!"
               multiLine={true}
+              // input pattern=".{5,10}"
+              // inputProps={{ minLength: 3 }}
               rowsMax={4}
+              value={this.state.interest}
+              minLength="3"
+              maxLength="100"
+              onChange={
+                (event) => {this.setState({interest: event.target.value})}
+              }
             />
             <br/>
             <br/>
@@ -269,5 +302,8 @@ class UserInfo extends Component {
     );
   }
 }
+
+
+
 
 export default UserInfo;

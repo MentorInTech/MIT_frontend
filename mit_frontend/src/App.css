@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   background-color: #E8EAF6;
-  height: 100vh;
+  height: 120vh; /*used to 100vh*/
 }
 
 p {
@@ -45,7 +45,19 @@ p {
 .user-info-card {
   margin: auto;
   width: 432px;
-  height: 880px;
+  height: 1050px; /*used to be 880px*/
+}
+
+.user-info-card p {
+  text-align: left;
+  padding-top: 35px;
+  padding-left: 35px;
+}
+
+
+input[type='radio'], label {
+  text-align: left;
+  padding-left: 5px;
 }
 
 span {
