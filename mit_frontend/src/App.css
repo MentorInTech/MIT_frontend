@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2018， Silicon Valley Career Women. 
+  Copyright (c) 2018， Silicon Valley Career Women.
   All rights reserved.
 */
 .App {
@@ -55,7 +55,7 @@ p {
 .goal-selection-card {
   margin: auto;
   width: 432px;
-  height: 500px;
+  height: 525px;
 }
 
 span {
@@ -75,4 +75,41 @@ span {
 .forget-password {
   color: #328AFB;
   margin: 20px;
+}
+
+.interested-program-title {
+  margin: 40px 0px 10px 56px;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.program-dropdown {
+  margin: 10px 0px 15px 56px;
+}
+
+.mentor-role-title {
+  margin: 15px 0px 0px 56px;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.mentor-role {
+  margin-top: 10px;
+  margin-left: 56px;
+}
+
+.profession-title {
+  margin: 20px 0px 0px 56px;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.slider {
+  margin-left: 56px;
+  margin-right: 16px;
+}
+
+.profession-score {
+  display: inline-block;
+  margin:auto;
 }

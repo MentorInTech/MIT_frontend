@@ -12,7 +12,10 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import RadioButton from 'material-ui/RadioButton';
 import {Tabs, Tab} from 'material-ui/Tabs';
+import Slider from 'material-ui/Slider';
 import '../App.css';
+import styles from './styles';
+
 
 class GoalSelection extends Component {
   constructor(props) {
@@ -39,8 +42,16 @@ class GoalSelection extends Component {
      */
     this.state = {
       currentTab: "1",
+      programTopic: "Public Speaking",
+      mentorRole: "Mentor",
       goal: []
     }
+  }
+
+  handleProgramChange = (event, index, value) => this.setState({programTopic: value});
+
+  setMentorRole = (mentorRole) => {
+    this.setState({ mentorRole });
   }
 
   handleTabChange = (value) => {
@@ -63,20 +74,49 @@ class GoalSelection extends Component {
             <Tabs value={this.state.currentTab} onChange={this.handleTabChange} >
               <Tab label="Top 1" value="1">
                 <div>
-                  <p>Interested Program Topics</p>
-                    <DropDownMenu value={this.state.age} onChange={this.handleAgeChange}>
-                      <MenuItem value={"Under 22"} primaryText="Under 22" />
-                      <MenuItem value={"22 - 25"} primaryText="22 - 25" />
-                    </DropDownMenu>
-                  <p>Would you like to be</p>
-                  <RadioButton
-                    label="Internship"
-                  />
-                  <RadioButton
-                    label="Full-time"
-                  />
-                  <p>Give yourself a score of your profession</p>
+                  <p className="interested-program-title">Interested Program Topics</p>
+                  <DropDownMenu className="program-dropdown" value={this.state.programTopic} onChange={this.handleProgramChange}>
+                    <MenuItem value={"Public Speaking"} primaryText="Public Speaking" />
+                    <MenuItem value={"Software Engineering"} primaryText="Software Engineering" />
+                    <MenuItem value={"System Design"} primaryText="System Design" />
+                  </DropDownMenu>
 
+                  <p className="mentor-role-title">Would you like to be</p>
+                  <div style={{display: 'flex', flexDirection: 'row'}} className="mentor-role">
+                    <RadioButton
+                      label="Mentor"
+                      onClick={this.setMentorRole.bind(this, "Mentor")}
+                      checked={this.state.mentorRole === "Mentor"}
+                    />
+                    <RadioButton
+                      label="Mentee"
+                      onClick={this.setMentorRole.bind(this, "Mentee")}
+                      checked={this.state.mentorRole === "Mentee"}
+                    />
+                  </div>
+
+                  <p className="profession-title">Give yourself a score of your profession</p>
+                  <Slider
+                    className="slider"
+                    step={0.10}
+                    value={0.5}
+                    style={
+                      {
+                        display: "inline-block",
+                        width: "280px",
+                        height: "37.5px"
+                      }
+                    }
+                  />
+                  <p className="profession-score">{`${10}`}</p>
+                  <br/>
+                  <br/>
+                  <hr className="divider"/>
+                  <RaisedButton
+                    label="Next"
+                    labelColor="#ffffff"
+                    backgroundColor={styles.button.color}
+                  />
                 </div>
               </Tab>
               <Tab label="Top 2" value="2">
