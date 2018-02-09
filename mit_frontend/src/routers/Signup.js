@@ -23,7 +23,10 @@ class Signup extends Component {
       email: "",
       password: "",
       confirmPassword: "",
-      userNameErrorText: ""
+      userNameErrorText: "",
+      passwordErrorText: "",
+      emailErrorText: "",
+      confirmPasswordErrorText: ""
     };
   }
   /**
@@ -43,6 +46,27 @@ class Signup extends Component {
       this.setState({ userNameErrorText: ""});
     }
   }
+
+  validateOnChange(event) {
+    this.setState({password: event.target.value});
+    if (this.state.password !== "") {
+      this.setState({ passwordErrorText: ""});
+    }
+  }
+
+  emailOnChange(event) {
+    this.setState({email: event.target.value});
+    if (this.state.email !== "") {
+      this.setState({ emailErrorText: ""});
+    }
+  }
+
+  confirmPasswordOnChange(event) {
+    this.setState({confirmPassword: event.target.value});
+    if (this.state.confirmPassword !== "") {
+      this.setState({ confirmPasswordErrorText: ""});
+    }
+  }
   /**
    * This function is called when sign up button clicked. Will check all the fields, if there
    * is any empty fields in TextField, highlight the field.
@@ -54,6 +78,29 @@ class Signup extends Component {
     } else {
       this.setState({ userNameErrorText: ""});
     }
+
+    const passwordRules = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+    const passwordVal = passwordRules.test(this.state.password);
+    if (!passwordVal) {
+      this.setState({ passwordErrorText: "Minimum eight characters, at least one uppercase letter, one lowercase letter and one number"});
+    } else {
+      this.setState({ passwordErrorText: ""});
+    }
+
+    const emailRules = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const emailVal = emailRules.test(this.state.email);
+    if (!emailVal) {
+      this.setState({ emailErrorText: "Not valid email, please try again."});
+    } else {
+      this.setState({ emailErrorText: ""});
+    }
+
+    if (this.state.confirmPassword !== this.state.password) {
+      this.setState({ confirmPasswordErrorText: "Password does not match, please try again"});
+    } else {
+      this.setState({ confirmPasswordErrorText: ""});
+    }
+
   }
   /**
    * This function is required for each react component. Render function returns
@@ -97,9 +144,8 @@ class Signup extends Component {
               floatingLabelFocusStyle={styles.textField.text}
               underlineFocusStyle={styles.textField.underline}
               value={this.state.email}
-              onChange={
-                (event) => {this.setState({email: event.target.value})}
-              }
+              errorText={this.state.emailErrorText}
+              onChange = {this.emailOnChange.bind(this)}
             />
             <TextField
               hintText="Password"
@@ -108,9 +154,9 @@ class Signup extends Component {
               floatingLabelFocusStyle={styles.textField.text}
               underlineFocusStyle={styles.textField.underline}
               value={this.state.password}
-              onChange={
-                (event) => {this.setState({password: event.target.value})}
-              }
+              errorText={this.state.passwordErrorText}
+              onChange = {this.validateOnChange.bind(this)}
+
             />
             <TextField
               hintText="Confirm Password"
@@ -119,9 +165,8 @@ class Signup extends Component {
               floatingLabelFocusStyle={styles.textField.text}
               underlineFocusStyle={styles.textField.underline}
               value={this.state.confirmPassword}
-              onChange={
-                (event) => {this.setState({confirmPassword: event.target.value})}
-              }
+              errorText={this.state.confirmPasswordErrorText}
+              onChange = {this.confirmPasswordOnChange.bind(this)}
             />
             <br/>
             <br/>
