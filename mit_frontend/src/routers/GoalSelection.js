@@ -85,11 +85,13 @@ class GoalSelection extends Component {
                   <div style={{display: 'flex', flexDirection: 'row'}} className="mentor-role">
                     <RadioButton
                       label="Mentor"
+                      style={{display: "block"}}
                       onClick={this.setMentorRole.bind(this, "Mentor")}
                       checked={this.state.mentorRole === "Mentor"}
                     />
                     <RadioButton
                       label="Mentee"
+                      style={{display: "block"}}
                       onClick={this.setMentorRole.bind(this, "Mentee")}
                       checked={this.state.mentorRole === "Mentee"}
                     />
@@ -112,13 +114,9 @@ class GoalSelection extends Component {
                   <br/>
                   <br/>
                   <hr className="divider"/>
-                  <RaisedButton
-                    label="Next"
-                    labelColor="#ffffff"
-                    backgroundColor={styles.button.color}
-                  />
                 </div>
               </Tab>
+
               <Tab label="Top 2" value="2">
                 <div>
                   <p>
@@ -138,6 +136,12 @@ class GoalSelection extends Component {
                 </div>
               </Tab>
             </Tabs>
+
+            <RaisedButton
+              label="Next"
+              labelColor="#ffffff"
+              backgroundColor={styles.button.color}
+            />
           </Card>
         </MuiThemeProvider>
       </div>
