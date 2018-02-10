@@ -44,14 +44,54 @@ class GoalSelection extends Component {
       currentTab: "1",
       programTopic: "Public Speaking",
       mentorRole: "Mentor",
+      selfEvaluation: 5,
+      tabs: [
+        {
+          programTopic: "Public Speaking",
+          mentorRole: "Mentor",
+          selfEvaluation: 5
+        },
+        {
+          programTopic: "Public Speaking",
+          mentorRole: "Mentor",
+          selfEvaluation: 5
+        },
+        {
+          programTopic: "Public Speaking",
+          mentorRole: "Mentor",
+          selfEvaluation: 5
+        }
+      ],
       goal: []
     }
   }
 
-  handleProgramChange = (event, index, value) => this.setState({programTopic: value});
+  handleProgramChange = (event, index, value) => {
+    this.setState({programTopic: value});
+    this.setNewGoalInTab();
+  }
 
-  setMentorRole = (mentorRole) => {
-    this.setState({ mentorRole });
+  setMentorRole = (value) => {
+    this.setState({mentorRole: value});
+    this.setNewGoalInTab();
+  }
+
+  setNewGoalInTab = () => {
+    const index = parseInt(this.state.currentTab) - 1;
+    const programTopic = this.state.programTopic;
+    const mentorRole = this.state.mentorRole;
+    const selfEvaluation = this.state.selfEvaluation;
+    const newGoal = {
+      programTopic,
+      mentorRole,
+      selfEvaluation
+    };
+
+    this.setState({tabs:[
+      ...this.state.tabs.slice(0, index),
+      newGoal,
+      ...this.state.tabs.slice(index + 1)
+    ]});
   }
 
   handleTabChange = (value) => {
@@ -110,33 +150,95 @@ class GoalSelection extends Component {
                       }
                     }
                   />
-                  <p className="profession-score">{`${10}`}</p>
-                  <br/>
-                  <br/>
-                  <hr className="divider"/>
+                  <p className="profession-score">{`${this.state.selfEvaluation}`}</p>
                 </div>
               </Tab>
 
               <Tab label="Top 2" value="2">
                 <div>
-                  <p>
-                    This is another example of a controllable tab. Remember, if you
-                    use controllable Tabs, you need to give all of your tabs values or else
-                    you wont be able to select them.
-                  </p>
+                  <p className="interested-program-title">Interested Program Topics</p>
+                  <DropDownMenu className="program-dropdown" value={this.state.programTopic} onChange={this.handleProgramChange}>
+                    <MenuItem value={"Public Speaking"} primaryText="Public Speaking" />
+                    <MenuItem value={"Software Engineering"} primaryText="Software Engineering" />
+                    <MenuItem value={"System Design"} primaryText="System Design" />
+                  </DropDownMenu>
+
+                  <p className="mentor-role-title">Would you like to be</p>
+                  <div style={{display: 'flex', flexDirection: 'row'}} className="mentor-role">
+                    <RadioButton
+                      label="Mentor"
+                      style={{display: "block"}}
+                      onClick={this.setMentorRole.bind(this, "Mentor")}
+                      checked={this.state.mentorRole === "Mentor"}
+                    />
+                    <RadioButton
+                      label="Mentee"
+                      style={{display: "block"}}
+                      onClick={this.setMentorRole.bind(this, "Mentee")}
+                      checked={this.state.mentorRole === "Mentee"}
+                    />
+                  </div>
+
+                  <p className="profession-title">Give yourself a score of your profession</p>
+                  <Slider
+                    className="slider"
+                    step={0.10}
+                    value={0.5}
+                    style={
+                      {
+                        display: "inline-block",
+                        width: "280px",
+                        height: "37.5px"
+                      }
+                    }
+                  />
+                  <p className="profession-score">{`${this.state.selfEvaluation}`}</p>
                 </div>
               </Tab>
               <Tab label="Top 3" value="3">
                 <div>
-                  <p>
-                    This is another example of a controllable tab. Remember, if you
-                    use controllable Tabs, you need to give all of your tabs values or else
-                    you wont be able to select them.
-                  </p>
+                  <p className="interested-program-title">Interested Program Topics</p>
+                  <DropDownMenu className="program-dropdown" value={this.state.programTopic} onChange={this.handleProgramChange}>
+                    <MenuItem value={"Public Speaking"} primaryText="Public Speaking" />
+                    <MenuItem value={"Software Engineering"} primaryText="Software Engineering" />
+                    <MenuItem value={"System Design"} primaryText="System Design" />
+                  </DropDownMenu>
+
+                  <p className="mentor-role-title">Would you like to be</p>
+                  <div style={{display: 'flex', flexDirection: 'row'}} className="mentor-role">
+                    <RadioButton
+                      label="Mentor"
+                      style={{display: "block"}}
+                      onClick={this.setMentorRole.bind(this, "Mentor")}
+                      checked={this.state.mentorRole === "Mentor"}
+                    />
+                    <RadioButton
+                      label="Mentee"
+                      style={{display: "block"}}
+                      onClick={this.setMentorRole.bind(this, "Mentee")}
+                      checked={this.state.mentorRole === "Mentee"}
+                    />
+                  </div>
+
+                  <p className="profession-title">Give yourself a score of your profession</p>
+                  <Slider
+                    className="slider"
+                    step={0.10}
+                    value={0.5}
+                    style={
+                      {
+                        display: "inline-block",
+                        width: "280px",
+                        height: "37.5px"
+                      }
+                    }
+                  />
+                  <p className="profession-score">{`${this.state.selfEvaluation}`}</p>
                 </div>
               </Tab>
             </Tabs>
-
+            <br/>
+            <hr className="divider"/>
             <RaisedButton
               label="Next"
               labelColor="#ffffff"
