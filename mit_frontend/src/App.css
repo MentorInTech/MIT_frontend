@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   background-color: #E8EAF6;
-  height: 120vh; /*used to 100vh*/
+  height: 145vh; /*used to 100vh*/
 }
 
 p {
@@ -45,7 +45,7 @@ p {
 .user-info-card {
   margin: auto;
   width: 432px;
-  height: 1050px; /*used to be 880px*/
+  height: 1320px; /*used to be 880px*/
 }
 
 .user-info-card p {

@@ -11,11 +11,3 @@ const store = createStore(registerServiceWorker);
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
-
-// ReactDOM.render(
-//     <Provider store={store}>
-//         <renderTextField />
-//     </Provider>,
-//     document.getElementById('root')
-// );
-// registerServiceWorker();
