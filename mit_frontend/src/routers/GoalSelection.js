@@ -94,7 +94,7 @@ class GoalSelection extends Component {
                   <Slider
                     className="slider"
                     step={0.10}
-                    value={0.5}
+                    value={this.state.selfEvaluation1 / 10}
                     style={
                       {
                         display: "inline-block",
@@ -137,7 +137,7 @@ class GoalSelection extends Component {
                   <Slider
                     className="slider"
                     step={0.10}
-                    value={0.5}
+                    value={this.state.selfEvaluation2 / 10}
                     style={
                       {
                         display: "inline-block",
@@ -179,7 +179,7 @@ class GoalSelection extends Component {
                   <Slider
                     className="slider"
                     step={0.10}
-                    value={0.5}
+                    value={this.state.selfEvaluation3 / 10}
                     style={
                       {
                         display: "inline-block",
