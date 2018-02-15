@@ -14,7 +14,9 @@
     "build": "npm test && react-scripts build",
     "test": "npm run lint && CI=true react-scripts test --env=jsdom --coverage",
     "eject": "react-scripts eject",
+
     "lint": "npm run lint:js && npm run lint:css",
+    "lint:fix": "npm run lint:js:fix ; npm run lint:css:fix",
     "lint:js": "eslint --ext js --ext jsx src",
     "lint:js:fix": "eslint --fix --ext js --ext jsx src",
     "lint:css": "stylelint src/**/*.css",

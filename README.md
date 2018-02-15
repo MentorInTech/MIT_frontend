@@ -22,6 +22,8 @@ You will also see any lint errors in the console.
   - Dependencies: `npm lint:js`, `npm lint:css`
 - `npm lint:js`: lints JavaScript files only, using [ESLint](https://eslint.org/) and slight alternation of [Airbnb's JavaScript Style Guide](https://github.com/airbnb/javascript)
 - `npm lint:css`: lints CSS files only, using [stylelint](https://github.com/stylelint/stylelint) and the [standard guide](https://github.com/stylelint/stylelint-config-standard)
+- `npm lint:fix`: lints JavaScript and CSS files and attempts to fix problems
+  - Dependencies: `npm lint:js:fix`, `npm lint:css:fix`
 - `npm lint:js:fix` lints and attempts to fix JavaScript style violation
 - `npm lint:css:fix` lints and attempts to fix CSS style violation
 
@@ -31,7 +33,9 @@ Linting makes sure the team follows a consistent coding style and helps keeping
 code base clean and easy to follow. Most editors support real-time linting,
 so you don't to wait until you finished everything to see code style advices.
 
-Here's a quick setup guide for some popular editors
+Here's a quick setup guide for some popular editors.
+
+Feel free to add to the list if your favourite editor isn't listed in this section.
 
 ### Prerequisite
 
@@ -71,3 +75,15 @@ you don't need them because Atom IDE already comes with linting API.
 Once you have done so, you should automatically get linting advices every time
 you saved a file. These style guide comes from the `.eslintrc` and `.stylelintrc`
 files in the repository, and will be the same for every one.
+
+### Setting up for Sublime Text 3
+
+We will use Sublime's Package Control to install the required packages:
+
+1. Make sure you have a local nvm setup
+  - Open a terminal and type `nvm --version` - you should see a version number printed
+  - If not, follow the [installation guide](https://github.com/creationix/nvm#install-script) to install nvm
+2. Open Sublime Text > Preferences > Package Control > Install Package
+3. Search for `SublimeLinter` and select it
+4. Repeat step 2 for `SublimeLinter-eslint` and `SublimeLinter-stylelint`
+5. Restart Sublime Text - you should begin to see linting suggestions inline
