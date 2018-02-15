@@ -77,6 +77,10 @@ span {
   margin: 20px;
 }
 
+.tab-title {
+  color: #3F51B5;
+  background-color: #ffffff;
+}
 .interested-program-title {
   margin: 40px 0px 10px 56px;
   font-size: 18px;

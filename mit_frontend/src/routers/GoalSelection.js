@@ -20,78 +20,27 @@ import styles from './styles';
 class GoalSelection extends Component {
   constructor(props) {
     super(props);
-    /**
-     * states:
-     * Goal: [
-       {
-       programTopic: "",
-       mentorRole: "",
-       selfValudation: 0
-       },
-       {
-       programTopic: "",
-       mentorRole: "",
-       selfValudation: 0
-       },
-       {
-       programTopic: "",
-       mentorRole: "",
-       selfValudation: 0
-       }
-     ]
-     */
     this.state = {
       currentTab: "1",
-      programTopic: "Public Speaking",
-      mentorRole: "Mentor",
-      selfEvaluation: 5,
-      tabs: [
-        {
-          programTopic: "Public Speaking",
-          mentorRole: "Mentor",
-          selfEvaluation: 5
-        },
-        {
-          programTopic: "Public Speaking",
-          mentorRole: "Mentor",
-          selfEvaluation: 5
-        },
-        {
-          programTopic: "Public Speaking",
-          mentorRole: "Mentor",
-          selfEvaluation: 5
-        }
-      ],
+      programTopic1: "Public Speaking",
+      mentorRole1: "Mentor",
+      selfEvaluation1: 5,
+      programTopic2: "Public Speaking",
+      mentorRole2: "Mentor",
+      selfEvaluation2: 5,
+      programTopic3: "Public Speaking",
+      mentorRole3: "Mentor",
+      selfEvaluation3: 5,
       goal: []
     }
   }
 
   handleProgramChange = (event, index, value) => {
-    this.setState({programTopic: value});
-    this.setNewGoalInTab();
+    this.setState({[`programTopic${this.state.currentTab}`]: value});
   }
 
   setMentorRole = (value) => {
-    this.setState({mentorRole: value});
-    this.setNewGoalInTab();
-  }
-
-  setNewGoalInTab = () => {
-    const index = parseInt(this.state.currentTab) - 1;
-    const programTopic = this.state.programTopic;
-    const mentorRole = this.state.mentorRole;
-    const selfEvaluation = this.state.selfEvaluation;
-    const newGoal = {
-      programTopic,
-      mentorRole,
-      selfEvaluation
-    };
-
-    this.setState({tabs:[
-      ...this.state.tabs.slice(0, index),
-      newGoal,
-      ...this.state.tabs.slice(index + 1)
-    ]});
+    this.setState({[`mentorRole${this.state.currentTab}`]: value});
   }
 
   handleTabChange = (value) => {
@@ -112,10 +61,10 @@ class GoalSelection extends Component {
           <Card className="goal-selection-card">
             <CardTitle title="Goal Selection" titleColor="#ffffff" className="card-title"></CardTitle>
             <Tabs value={this.state.currentTab} onChange={this.handleTabChange} >
-              <Tab label="Top 1" value="1">
+              <Tab label="Top 1" value="1" className="tab-title">
                 <div>
                   <p className="interested-program-title">Interested Program Topics</p>
-                  <DropDownMenu className="program-dropdown" value={this.state.programTopic} onChange={this.handleProgramChange}>
+                  <DropDownMenu className="program-dropdown" value={this.state.programTopic1} onChange={this.handleProgramChange}>
                     <MenuItem value={"Public Speaking"} primaryText="Public Speaking" />
                     <MenuItem value={"Software Engineering"} primaryText="Software Engineering" />
                     <MenuItem value={"System Design"} primaryText="System Design" />
@@ -127,13 +76,13 @@ class GoalSelection extends Component {
                       label="Mentor"
                       style={{display: "block"}}
                       onClick={this.setMentorRole.bind(this, "Mentor")}
-                      checked={this.state.mentorRole === "Mentor"}
+                      checked={this.state.mentorRole1 === "Mentor"}
                     />
                     <RadioButton
                       label="Mentee"
                       style={{display: "block"}}
                       onClick={this.setMentorRole.bind(this, "Mentee")}
-                      checked={this.state.mentorRole === "Mentee"}
+                      checked={this.state.mentorRole1 === "Mentee"}
                     />
                   </div>
 
@@ -150,14 +99,14 @@ class GoalSelection extends Component {
                       }
                     }
                   />
-                  <p className="profession-score">{`${this.state.selfEvaluation}`}</p>
+                <p className="profession-score">{`${this.state.selfEvaluation1}`}</p>
                 </div>
               </Tab>
 
-              <Tab label="Top 2" value="2">
+              <Tab label="Top 2" value="2" className="tab-title">
                 <div>
                   <p className="interested-program-title">Interested Program Topics</p>
-                  <DropDownMenu className="program-dropdown" value={this.state.programTopic} onChange={this.handleProgramChange}>
+                  <DropDownMenu className="program-dropdown" value={this.state.programTopic2} onChange={this.handleProgramChange}>
                     <MenuItem value={"Public Speaking"} primaryText="Public Speaking" />
                     <MenuItem value={"Software Engineering"} primaryText="Software Engineering" />
                     <MenuItem value={"System Design"} primaryText="System Design" />
@@ -169,13 +118,13 @@ class GoalSelection extends Component {
                       label="Mentor"
                       style={{display: "block"}}
                       onClick={this.setMentorRole.bind(this, "Mentor")}
-                      checked={this.state.mentorRole === "Mentor"}
+                      checked={this.state.mentorRole2 === "Mentor"}
                     />
                     <RadioButton
                       label="Mentee"
                       style={{display: "block"}}
                       onClick={this.setMentorRole.bind(this, "Mentee")}
-                      checked={this.state.mentorRole === "Mentee"}
+                      checked={this.state.mentorRole2 === "Mentee"}
                     />
                   </div>
 
@@ -192,13 +141,13 @@ class GoalSelection extends Component {
                       }
                     }
                   />
-                  <p className="profession-score">{`${this.state.selfEvaluation}`}</p>
+                <p className="profession-score">{`${this.state.selfEvaluation2}`}</p>
                 </div>
               </Tab>
-              <Tab label="Top 3" value="3">
+              <Tab label="Top 3" value="3" className="tab-title">
                 <div>
                   <p className="interested-program-title">Interested Program Topics</p>
-                  <DropDownMenu className="program-dropdown" value={this.state.programTopic} onChange={this.handleProgramChange}>
+                  <DropDownMenu className="program-dropdown" value={this.state.programTopic3} onChange={this.handleProgramChange}>
                     <MenuItem value={"Public Speaking"} primaryText="Public Speaking" />
                     <MenuItem value={"Software Engineering"} primaryText="Software Engineering" />
                     <MenuItem value={"System Design"} primaryText="System Design" />
@@ -210,13 +159,13 @@ class GoalSelection extends Component {
                       label="Mentor"
                       style={{display: "block"}}
                       onClick={this.setMentorRole.bind(this, "Mentor")}
-                      checked={this.state.mentorRole === "Mentor"}
+                      checked={this.state.mentorRole2 === "Mentor"}
                     />
                     <RadioButton
                       label="Mentee"
                       style={{display: "block"}}
                       onClick={this.setMentorRole.bind(this, "Mentee")}
-                      checked={this.state.mentorRole === "Mentee"}
+                      checked={this.state.mentorRole2 === "Mentee"}
                     />
                   </div>
 
@@ -233,7 +182,7 @@ class GoalSelection extends Component {
                       }
                     }
                   />
-                  <p className="profession-score">{`${this.state.selfEvaluation}`}</p>
+                <p className="profession-score">{`${this.state.selfEvaluation3}`}</p>
                 </div>
               </Tab>
             </Tabs>
