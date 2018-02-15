@@ -1,0 +1,17 @@
+{
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "rules": {
+    "comma-dangle": [ "error", "never" ],
+    "function-paren-newline": [ "error", "consistent" ],
+    "jsx-a11y/anchor-is-valid": [ "off" ],
+    "max-len": [ "error", { "code": 120 } ],
+    "no-use-before-define": [ "error", { "functions": false, "classes": true } ],
+    "react/jsx-filename-extension": [ "off" ],
+    "react/jsx-no-comment-textnodes": [ "off" ]
+  }
+}
