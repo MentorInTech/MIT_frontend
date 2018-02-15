@@ -43,6 +43,10 @@ class GoalSelection extends Component {
     this.setState({[`mentorRole${this.state.currentTab}`]: value});
   }
 
+  handleScoreChange = (event, value) => {
+    this.setState({[`selfEvaluation${this.state.currentTab}`]: value * 10})
+  }
+
   handleTabChange = (value) => {
     this.setState({
       currentTab: value
@@ -98,6 +102,7 @@ class GoalSelection extends Component {
                         height: "37.5px"
                       }
                     }
+                    onChange={this.handleScoreChange}
                   />
                 <p className="profession-score">{`${this.state.selfEvaluation1}`}</p>
                 </div>
@@ -140,6 +145,7 @@ class GoalSelection extends Component {
                         height: "37.5px"
                       }
                     }
+                    onChange={this.handleScoreChange}
                   />
                 <p className="profession-score">{`${this.state.selfEvaluation2}`}</p>
                 </div>
@@ -159,13 +165,13 @@ class GoalSelection extends Component {
                       label="Mentor"
                       style={{display: "block"}}
                       onClick={this.setMentorRole.bind(this, "Mentor")}
-                      checked={this.state.mentorRole2 === "Mentor"}
+                      checked={this.state.mentorRole3 === "Mentor"}
                     />
                     <RadioButton
                       label="Mentee"
                       style={{display: "block"}}
                       onClick={this.setMentorRole.bind(this, "Mentee")}
-                      checked={this.state.mentorRole2 === "Mentee"}
+                      checked={this.state.mentorRole3 === "Mentee"}
                     />
                   </div>
 
@@ -181,6 +187,7 @@ class GoalSelection extends Component {
                         height: "37.5px"
                       }
                     }
+                    onChange={this.handleScoreChange}
                   />
                 <p className="profession-score">{`${this.state.selfEvaluation3}`}</p>
                 </div>
