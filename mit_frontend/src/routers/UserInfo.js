@@ -35,6 +35,9 @@ for (let i = thisYear; i >= 1900; i--) {
 const jobCategories = ["Software Engineer", "Product Manager", "Sales Engineer", "Electrical Engineer", "Sourcing/Supply Chain", "Mechanical Engineer", "Manufacturing Engineer", "Industrial Designer", "Data Scientist", "Marketing", "Public Relations", "Analyst", "Communications", "Event Planner", "Analyst", "Strategy & Operations", "Program Manager", "Account Manager", "Business Partnerships", "New Business Sales", "Solutions Consultant", "Trainer/Instructional Designer", "Technical Solutions Engineer", "UX Engineer", "Visual Designer", "Motion Designer", "Interaction Designer", "UX Researcher", "Content Strategist/UX Writer", "Accountant", "Operations and Services", "Auditor", "Compliance", "Staffing", "HR Business Partner", "Learning & Development", "Administrative Support"       
 ];
 
+
+
+
 class UserInfo extends Component {
   constructor(props) {
     super(props);
@@ -57,9 +60,26 @@ class UserInfo extends Component {
       interest: "",
       firstNameErrorText:"",
       lastNameErrorText:"",
-      interestErrorText:""
+      interestErrorText:"",
     };
   }
+
+  firstNameOnChange(event) {
+    if (this.state.firstName.match(/^[A-Z][a-z0-9_-]{1,14}/)) {
+      this.setState({ firstNameErrorText: "testing"});
+    } else {
+      this.setState({ firstNameErrorText: "Name must start with a letter and be capitialized"});
+    }
+  }
+
+
+  // onChange(event) {
+  //   console.log("clicked!");
+  //   if (this.state.firstName === "") {
+  //     this.setState({ firstNameErrorText: "This field is required"});
+  //   } else {
+  //     this.setState({ firstNameErrorText: ""});
+  //   }
 
   handleAgeChange = (event, index, value) => this.setState({age: value});
   handleCityChange = (event, index, value) => this.setState({city: value});
@@ -90,6 +110,7 @@ class UserInfo extends Component {
    * @param {null}
    * @return {null}
    */
+
   render() {
 
     var fixtures = [
@@ -117,18 +138,19 @@ class UserInfo extends Component {
              */
             <p>Name</p>
             <TextField
-              // required
+              required
               hintText="First Name"
               floatingLabelText="First Name"
               floatingLabelFocusStyle={styles.textField.text}
               underlineFocusStyle={styles.textField.underline}
               value={this.state.firstName}
+              errorText={this.state.firstNameErrorText}
               minLength="2"
               maxLength="15"
+              
               onChange={
-                (event) => {this.setState({lastName: event.target.value})}
+                (event) => {this.setState({firstName: event.target.value})}
               }
-
             />
             <TextField
               required
@@ -163,16 +185,16 @@ class UserInfo extends Component {
                 placeholder="Start typing!"
                 initialValue=""
                 fixtures={fixtures}
-                onSuggestSelect={this.onSuggestSelect}
+                onSuggestSelect={this.onSuggestSelect.bind(this)}
                 location={new google.maps.LatLng(37.3382, 121.8863)}
                 radius="20" />
 
               <button onClick={()=>this._geoSuggest.focus()}>Focus</button>
               <button onClick={()=>this._geoSuggest.clear()}>Clear</button>
-              <button onClick={()=>this._geoSuggest.selectSuggest()}>Search</button>
+             
             </div>
 
-            <p>Job</p>
+            <p>Job Type</p>
             <br />
             <RadioButton
               label="Internship"
@@ -272,6 +294,7 @@ class UserInfo extends Component {
               label="Next"
               labelColor="#ffffff"
               backgroundColor={styles.button.color}
+              onChange={ this.firstNameOnChange }
             />
           </Card>
         </MuiThemeProvider>
@@ -280,11 +303,15 @@ class UserInfo extends Component {
   }
     onSuggestSelect(suggest) {
       if(suggest !== undefined) {
+        this.setState({city: suggest.description});
+
         console.log(suggest.description);
       } else {
+
         console.log('No location input');
       }
   }
+
 }
 
 
