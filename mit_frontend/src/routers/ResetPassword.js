@@ -16,9 +16,59 @@ class ResetPassword extends Component {
     super(props);
 
     this.state = {
-      password: null,
-      confirmPassword: null
+      password: "",
+      confirmPassword: "",
+      passwordErrorText: "",
+      confirmPasswordErrorText: ""
     }
+  }
+
+  /**
+   * Update input value to state.password.
+   * When the inputvalue is empty, show the error message.
+   */
+  passwordOnChange(event) {
+    this.setState({password: event.target.value});
+    if (this.state.password !== "") {
+      this.setState({ passwordErrorText: ""});
+    }
+  }
+
+  /**
+   * Update input value to state.confirmPassword.
+   * When the inputvalue is empty, show the error message.
+   */
+  confirmPasswordOnChange(event) {
+    this.setState({confirmPassword: event.target.value});
+    if (this.state.confirmPassword !== "") {
+      this.setState({ confirmPasswordErrorText: ""});
+    }
+  }
+
+  onChange(event) {
+    console.log("clicked!");
+    /** 
+     * check the password strongness:
+     * Minimum eight characters, at least one uppercase letter, one lowercase letter and one number
+     */
+    const passwordRules = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+    const passwordVal = passwordRules.test(this.state.password);
+    if (!passwordVal) {
+      this.setState({ passwordErrorText: "Minimum eight characters, at least one uppercase letter, one lowercase letter and one number"});
+    } else {
+      this.setState({ passwordErrorText: ""});
+    }
+
+    /**
+     * Confirm the password. If the state.confirmpassword is not same witn the 
+     * state.passowrd. Show the error message
+     */
+    if (this.state.confirmPassword !== this.state.password) {
+      this.setState({ confirmPasswordErrorText: "Password does not match, please try again"});
+    } else {
+      this.setState({ confirmPasswordErrorText: ""});
+    }
+
   }
 
   render() {
@@ -35,9 +85,9 @@ class ResetPassword extends Component {
               floatingLabelFocusStyle={styles.textField.text}
               underlineFocusStyle={styles.textField.underline}
               value={this.state.password}
-              onChange={
-                (event) => {this.setState({password: event.target.value})}
-              }
+              errorText={this.state.passwordErrorText}
+              onChange = {this.passwordOnChange.bind(this)}
+
             />
             <TextField
               hintText="Confirm New Password"
@@ -46,9 +96,8 @@ class ResetPassword extends Component {
               floatingLabelFocusStyle={styles.textField.text}
               underlineFocusStyle={styles.textField.underline}
               value={this.state.confirmPassword}
-              onChange={
-                (event) => {this.setState({confirmPassword: event.target.value})}
-              }
+              errorText={this.state.confirmPasswordErrorText}
+              onChange = {this.confirmPasswordOnChange.bind(this)}
             />
             <br/>
             <br/>
@@ -56,6 +105,9 @@ class ResetPassword extends Component {
               label="Change Password"
               labelColor="#ffffff"
               backgroundColor={styles.button.color}
+              onClick={
+                this.onChange.bind(this)
+              }
             />
             <hr className="divider"/>
             <Link to={`/login`}>
