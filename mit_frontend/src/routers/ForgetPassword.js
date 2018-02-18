@@ -16,8 +16,30 @@ class ForgetPassword extends Component {
     super(props);
 
     this.state = {
-      email: null
+      email: "",
+      emailErrorText: "",
+      passValidation: false
     };
+  }
+
+  /**
+   * Update input value to state.email.
+   * When the inputvalue is empty, show the error message.
+   */
+  emailOnChange(event) {
+    this.setState({email: event.target.value});
+    if (this.state.email !== "") {
+      this.setState({ emailErrorText: ""});
+    }
+  }
+
+  onChange(event) {
+    console.log("clicked!");
+    if (this.state.email === "") {
+      this.setState({ emailErrorText: "This field is required"});
+    } else {
+      this.setState({ emailErrorText: "", passValidation: true});
+    }
   }
 
   render() {
@@ -33,17 +55,22 @@ class ForgetPassword extends Component {
               floatingLabelFocusStyle={styles.textField.text}
               underlineFocusStyle={styles.textField.underline}
               value={this.state.email}
-              onChange={
-                (event) => {this.setState({email: event.target.value})}
-              }
+              errorText={this.state.emailErrorText}
+              onChange = {this.emailOnChange.bind(this)}
             />
             <br/>
             <br/>
-            <Link to={`/reset-password`}>
+            <Link to={{
+              pathname: '/reset-password', 
+              state: {passValidation: true}
+            }}>
               <RaisedButton
                 label="Reset Password"
                 labelColor="#ffffff"
                 backgroundColor={styles.button.color}
+                onClick={
+                this.onChange.bind(this)
+              }
               />
             </Link>
             <hr className="divider"/>
