@@ -23,7 +23,10 @@ class Signup extends Component {
       email: "",
       password: "",
       confirmPassword: "",
-      userNameErrorText: ""
+      userNameErrorText: "",
+      passwordErrorText: "",
+      emailErrorText: "",
+      confirmPasswordErrorText: ""
     };
   }
   /**
@@ -37,10 +40,47 @@ class Signup extends Component {
     console.log(this.state);
   }
 
+  /**
+   * Update input value to state.userName.
+   * When the inputvalue is empty, show the error message.
+   */
   userNameOnChange(event) {
     this.setState({userName: event.target.value});
     if (this.state.userName !== "") {
       this.setState({ userNameErrorText: ""});
+    }
+  }
+
+  /**
+   * Update input value to state.password.
+   * When the inputvalue is empty, show the error message.
+   */
+  passwordOnChange(event) {
+    this.setState({password: event.target.value});
+    if (this.state.password !== "") {
+      this.setState({ passwordErrorText: ""});
+    }
+  }
+
+  /**
+   * Update input value to state.email.
+   * When the inputvalue is empty, show the error message.
+   */
+  emailOnChange(event) {
+    this.setState({email: event.target.value});
+    if (this.state.email !== "") {
+      this.setState({ emailErrorText: ""});
+    }
+  }
+
+  /**
+   * Update input value to state.confirmPassword.
+   * When the inputvalue is empty, show the error message.
+   */
+  confirmPasswordOnChange(event) {
+    this.setState({confirmPassword: event.target.value});
+    if (this.state.confirmPassword !== "") {
+      this.setState({ confirmPasswordErrorText: ""});
     }
   }
   /**
@@ -48,12 +88,61 @@ class Signup extends Component {
    * is any empty fields in TextField, highlight the field.
    */
   onChange(event) {
-    console.log("clicked!");
     if (this.state.userName === "") {
       this.setState({ userNameErrorText: "This field is required"});
     } else {
       this.setState({ userNameErrorText: ""});
     }
+
+    /**
+     * check the password strongness:
+     * Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character
+     */
+    const passwordRules = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/;
+    const passwordVal = passwordRules.test(this.state.password);
+    if (!passwordVal) {
+      this.setState({ passwordErrorText: "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character"});
+    } else {
+      this.setState({ passwordErrorText: ""});
+    }
+
+    /**
+     * validate the email address:
+     *
+     * Example of valid email id:
+     * mysite@ourearth.com
+     * my.ownsite@ourearth.org
+     * mysite@you.me.net
+     *
+     * Example of invalid email id:
+     * mysite.ourearth.com [@ is not present]
+     * mysite@.com.my [ tld (Top Level domain) can not start with dot "." ]
+     * @you.me.net [ No character before @ ]
+     * mysite123@gmail.b [ ".b" is not a valid tld ]
+     * mysite@.org.org [ tld can not start with dot "." ]
+     * .mysite@mysite.org [ an email should not be start with "." ]
+     *  mysite()*@gmail.com [ here the regular expression only allows character, digit, underscore, and dash ]
+     *  mysite..1234@yahoo.com [double dots are not allowed]
+     */
+    const emailRules = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const emailVal = emailRules.test(this.state.email);
+    if (!emailVal) {
+      this.setState({ emailErrorText: "Not valid email, please try again."});
+    } else {
+      this.setState({ emailErrorText: ""});
+    }
+
+
+    /**
+     * Confirm the password. If the state.confirmpassword is not same witn the
+     * state.passowrd. Show the error message
+     */
+    if (this.state.confirmPassword !== this.state.password) {
+      this.setState({ confirmPasswordErrorText: "Password does not match, please try again"});
+    } else {
+      this.setState({ confirmPasswordErrorText: ""});
+    }
+
   }
   /**
    * This function is required for each react component. Render function returns
@@ -97,9 +186,8 @@ class Signup extends Component {
               floatingLabelFocusStyle={styles.textField.text}
               underlineFocusStyle={styles.textField.underline}
               value={this.state.email}
-              onChange={
-                (event) => {this.setState({email: event.target.value})}
-              }
+              errorText={this.state.emailErrorText}
+              onChange = {this.emailOnChange.bind(this)}
             />
             <TextField
               hintText="Password"
@@ -108,9 +196,9 @@ class Signup extends Component {
               floatingLabelFocusStyle={styles.textField.text}
               underlineFocusStyle={styles.textField.underline}
               value={this.state.password}
-              onChange={
-                (event) => {this.setState({password: event.target.value})}
-              }
+              errorText={this.state.passwordErrorText}
+              onChange = {this.passwordOnChange.bind(this)}
+
             />
             <TextField
               hintText="Confirm Password"
@@ -119,9 +207,8 @@ class Signup extends Component {
               floatingLabelFocusStyle={styles.textField.text}
               underlineFocusStyle={styles.textField.underline}
               value={this.state.confirmPassword}
-              onChange={
-                (event) => {this.setState({confirmPassword: event.target.value})}
-              }
+              errorText={this.state.confirmPasswordErrorText}
+              onChange = {this.confirmPasswordOnChange.bind(this)}
             />
             <br/>
             <br/>
