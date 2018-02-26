@@ -30,7 +30,7 @@ class Login extends Component {
    */
   userNameOnChange(event) {
     this.setState({userName: event.target.value});
-    if (this.state.userName !== "") {
+    if (this.state.userName) {
       this.setState({ userNameErrorText: ""});
     }
   }
@@ -41,7 +41,7 @@ class Login extends Component {
    */
   passwordOnChange(event) {
     this.setState({password: event.target.value});
-    if (this.state.password !== "") {
+    if (this.state.password) {
       this.setState({ passwordErrorText: ""});
     }
   }
@@ -51,14 +51,13 @@ class Login extends Component {
    * is any empty fields in TextField, highlight the field.
    */
   onChange(event) {
-    console.log("clicked!");
-    if (this.state.userName === "") {
+    if (!this.state.userName) {
       this.setState({ userNameErrorText: "This field is required"});
     } else {
       this.setState({ userNameErrorText: ""});
     }
 
-    if (this.state.password === "") {
+    if (!this.state.password) {
       this.setState({ passwordErrorText: "This field is required"});
     } else {
       this.setState({ passwordErrorText: ""});

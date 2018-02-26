@@ -56,16 +56,7 @@ class UserInfo extends Component {
   setJobRole = (jobRole) => {
     this.setState({ jobRole });
   }
-  /**
-   * This is React built-in life cycle function. This function is called after
-   * Compount UI update. In React, in default every components will update if any change.
-   * This function now is only for demo data is successfully updated to state.
-   * @param {null}
-   * @return {null}
-   */
-  componentDidUpdate() {
-    console.log(this.state);
-  }
+
   /**
    * This function is required for each react component. Render function returns
    * UI components and render them in browser.

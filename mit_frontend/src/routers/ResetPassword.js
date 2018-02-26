@@ -29,7 +29,7 @@ class ResetPassword extends Component {
    */
   passwordOnChange(event) {
     this.setState({password: event.target.value});
-    if (this.state.password !== "") {
+    if (this.state.password) {
       this.setState({ passwordErrorText: ""});
     }
   }
@@ -40,27 +40,26 @@ class ResetPassword extends Component {
    */
   confirmPasswordOnChange(event) {
     this.setState({confirmPassword: event.target.value});
-    if (this.state.confirmPassword !== "") {
+    if (this.state.confirmPassword) {
       this.setState({ confirmPasswordErrorText: ""});
     }
   }
 
   onChange(event) {
-    console.log("clicked!");
-    /** 
+    /**
      * check the password strongness:
-     * Minimum eight characters, at least one uppercase letter, one lowercase letter and one number
+     * Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character
      */
-    const passwordRules = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+    const passwordRules = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/;
     const passwordVal = passwordRules.test(this.state.password);
     if (!passwordVal) {
-      this.setState({ passwordErrorText: "Minimum eight characters, at least one uppercase letter, one lowercase letter and one number"});
+      this.setState({ passwordErrorText: "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character"});
     } else {
       this.setState({ passwordErrorText: ""});
     }
 
     /**
-     * Confirm the password. If the state.confirmpassword is not same witn the 
+     * Confirm the password. If the state.confirmpassword is not same witn the
      * state.passowrd. Show the error message
      */
     if (this.state.confirmPassword !== this.state.password) {

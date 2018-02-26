@@ -28,20 +28,22 @@ class ForgetPassword extends Component {
    */
   emailOnChange(event) {
     this.setState({email: event.target.value});
-    if (this.state.email !== "") {
+    if (this.state.email) {
       this.setState({ emailErrorText: ""});
     }
   }
 
   onChange(event) {
-    console.log("clicked!");
-    if (this.state.email === "") {
+    if (this.state.email) {
       this.setState({ emailErrorText: "This field is required"});
     } else {
       this.setState({ emailErrorText: "", passValidation: true});
     }
   }
 
+  componentDidUpdate() {
+    console.log(this.state);
+  }
   render() {
     return (
       <div className="App">
@@ -54,14 +56,14 @@ class ForgetPassword extends Component {
               floatingLabelText="Email"
               floatingLabelFocusStyle={styles.textField.text}
               underlineFocusStyle={styles.textField.underline}
-              value={this.state.email}
+              type="email"
               errorText={this.state.emailErrorText}
               onChange = {this.emailOnChange.bind(this)}
             />
             <br/>
             <br/>
             <Link to={{
-              pathname: '/reset-password', 
+              pathname: '/reset-password',
               state: {passValidation: true}
             }}>
               <RaisedButton

@@ -88,21 +88,20 @@ class Signup extends Component {
    * is any empty fields in TextField, highlight the field.
    */
   onChange(event) {
-    console.log("clicked!");
     if (this.state.userName === "") {
       this.setState({ userNameErrorText: "This field is required"});
     } else {
       this.setState({ userNameErrorText: ""});
     }
 
-    /** 
+    /**
      * check the password strongness:
-     * Minimum eight characters, at least one uppercase letter, one lowercase letter and one number
+     * Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character
      */
-    const passwordRules = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+    const passwordRules = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/;
     const passwordVal = passwordRules.test(this.state.password);
     if (!passwordVal) {
-      this.setState({ passwordErrorText: "Minimum eight characters, at least one uppercase letter, one lowercase letter and one number"});
+      this.setState({ passwordErrorText: "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character"});
     } else {
       this.setState({ passwordErrorText: ""});
     }
@@ -116,7 +115,7 @@ class Signup extends Component {
      * mysite@you.me.net
      *
      * Example of invalid email id:
-     * mysite.ourearth.com [@ is not present] 
+     * mysite.ourearth.com [@ is not present]
      * mysite@.com.my [ tld (Top Level domain) can not start with dot "." ]
      * @you.me.net [ No character before @ ]
      * mysite123@gmail.b [ ".b" is not a valid tld ]
@@ -135,7 +134,7 @@ class Signup extends Component {
 
 
     /**
-     * Confirm the password. If the state.confirmpassword is not same witn the 
+     * Confirm the password. If the state.confirmpassword is not same witn the
      * state.passowrd. Show the error message
      */
     if (this.state.confirmPassword !== this.state.password) {
