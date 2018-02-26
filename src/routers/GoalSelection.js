@@ -53,10 +53,6 @@ class GoalSelection extends Component {
     });
   };
 
-  componentDidUpdate() {
-    console.log(this.state);
-  }
-
   render() {
     return (
       <div className="App">
