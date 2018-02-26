@@ -19,12 +19,14 @@ const jobYears = [];
 for (let i = 0; i <= 50; i += 1) {
   jobYears.push(<MenuItem value={i} key={i} primaryText={i} />);
 }
+                
 // Initiate Grad Year
 const thisYear = new Date().getFullYear();
 const gradYears = [];
 for (let i = thisYear; i >= 1900; i -= 1) {
   gradYears.push(<MenuItem value={i} key={i} primaryText={i} />);
 }
+                 
 class UserInfo extends Component {
   constructor(props) {
     super(props);
