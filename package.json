@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "npm test && react-scripts build",
+    "build": " react-scripts build",
     "test": "npm run lint && CI=true react-scripts test --env=jsdom --coverage",
     "eject": "react-scripts eject",
     "lint": "npm run lint:js && npm run lint:css",
