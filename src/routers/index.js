@@ -11,8 +11,8 @@ import ResetPassword from './ResetPassword';
 import UserInfo from './UserInfo';
 import GoalSelection from './GoalSelection';
 
-export default () =>
-  (<BrowserRouter>
+export default () => (
+  <BrowserRouter>
     <Switch>
       <Route path="/signup" component={Signup} />
       <Route path="/login" component={Login} />
@@ -21,4 +21,5 @@ export default () =>
       <Route path="/user-info" component={UserInfo} />
       <Route path="/goal-selection" component={GoalSelection} />
     </Switch>
-  </BrowserRouter>);
+  </BrowserRouter>
+);

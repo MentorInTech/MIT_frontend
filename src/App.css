@@ -4,7 +4,7 @@
 */
 .App {
   text-align: center;
-  background-color: #E8EAF6;
+  background-color: #e8eaf6;
   height: 100vh;
 }
 
@@ -14,7 +14,6 @@ p {
 }
 
 .title {
-  /*font-family: 'Roboto', sans-serif;*/
   padding-top: 67px;
   padding-bottom: 16px;
   font-size: 48px;
@@ -63,7 +62,7 @@ span {
 }
 
 .card-title {
-  background-color: #3F51B5;
+  background-color: #3f51b5;
 }
 
 .divider {
@@ -73,26 +72,27 @@ span {
 }
 
 .forget-password {
-  color: #328AFB;
+  color: #328afb;
   margin: 20px;
 }
 
 .tab-title {
-  color: #3F51B5;
-  background-color: #ffffff;
+  color: #3f51b5;
+  background-color: #fff;
 }
+
 .interested-program-title {
-  margin: 40px 0px 10px 56px;
+  margin: 40px 0 10px 56px;
   font-size: 18px;
   font-weight: 300;
 }
 
 .program-dropdown {
-  margin: 10px 0px 15px 56px;
+  margin: 10px 0 15px 56px;
 }
 
 .mentor-role-title {
-  margin: 15px 0px 0px 56px;
+  margin: 15px 0 0 56px;
   font-size: 18px;
   font-weight: 300;
 }
@@ -103,7 +103,7 @@ span {
 }
 
 .profession-title {
-  margin: 20px 0px 0px 56px;
+  margin: 20px 0 0 56px;
   font-size: 18px;
   font-weight: 300;
 }
@@ -115,5 +115,5 @@ span {
 
 .profession-score {
   display: inline-block;
-  margin:auto;
+  margin: auto;
 }

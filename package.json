@@ -18,9 +18,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": " react-scripts build",
+    "build": "npm test && react-scripts build",
+    "clean": "rm -rf node_modules build coverage",
     "test": "npm run lint && CI=true react-scripts test --env=jsdom --coverage",
-    "eject": "react-scripts eject",
     "lint": "npm run lint:js && npm run lint:css",
     "lint:fix": "npm run lint:js:fix ; npm run lint:css:fix",
     "lint:js": "eslint --ext js --ext jsx src",

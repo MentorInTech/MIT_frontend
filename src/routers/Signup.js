@@ -5,7 +5,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {Card, CardTitle} from 'material-ui/Card';
+import { Card, CardTitle } from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import '../App.css';
@@ -19,14 +19,14 @@ class Signup extends Component {
      * this.setState()
      */
     this.state = {
-      userName: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      userNameErrorText: "",
-      passwordErrorText: "",
-      emailErrorText: "",
-      confirmPasswordErrorText: ""
+      userName: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      userNameErrorText: '',
+      passwordErrorText: '',
+      emailErrorText: '',
+      confirmPasswordErrorText: ''
     };
   }
   /**
@@ -41,69 +41,31 @@ class Signup extends Component {
   }
 
   /**
-   * Update input value to state.userName.
-   * When the inputvalue is empty, show the error message.
-   */
-  userNameOnChange(event) {
-    this.setState({userName: event.target.value});
-    if (this.state.userName !== "") {
-      this.setState({ userNameErrorText: ""});
-    }
-  }
-
-  /**
-   * Update input value to state.password.
-   * When the inputvalue is empty, show the error message.
-   */
-  passwordOnChange(event) {
-    this.setState({password: event.target.value});
-    if (this.state.password !== "") {
-      this.setState({ passwordErrorText: ""});
-    }
-  }
-
-  /**
-   * Update input value to state.email.
-   * When the inputvalue is empty, show the error message.
-   */
-  emailOnChange(event) {
-    this.setState({email: event.target.value});
-    if (this.state.email !== "") {
-      this.setState({ emailErrorText: ""});
-    }
-  }
-
-  /**
-   * Update input value to state.confirmPassword.
-   * When the inputvalue is empty, show the error message.
-   */
-  confirmPasswordOnChange(event) {
-    this.setState({confirmPassword: event.target.value});
-    if (this.state.confirmPassword !== "") {
-      this.setState({ confirmPasswordErrorText: ""});
-    }
-  }
-  /**
    * This function is called when sign up button clicked. Will check all the fields, if there
    * is any empty fields in TextField, highlight the field.
    */
-  onChange(event) {
-    if (this.state.userName === "") {
-      this.setState({ userNameErrorText: "This field is required"});
+  onChange() {
+    if (this.state.userName === '') {
+      this.setState({ userNameErrorText: 'This field is required' });
     } else {
-      this.setState({ userNameErrorText: ""});
+      this.setState({ userNameErrorText: '' });
     }
 
     /**
      * check the password strongness:
-     * Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character
+     * Minimum eight characters, at least one uppercase letter, one lowercase letter,
+     * one number and one special character
      */
     const passwordRules = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/;
     const passwordVal = passwordRules.test(this.state.password);
     if (!passwordVal) {
-      this.setState({ passwordErrorText: "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character"});
+      this.setState({
+        passwordErrorText:
+            'Minimum eight characters, at least one uppercase letter, one lowercase letter,'
+            + ' one number and one special character'
+      });
     } else {
-      this.setState({ passwordErrorText: ""});
+      this.setState({ passwordErrorText: '' });
     }
 
     /**
@@ -124,12 +86,12 @@ class Signup extends Component {
      *  mysite()*@gmail.com [ here the regular expression only allows character, digit, underscore, and dash ]
      *  mysite..1234@yahoo.com [double dots are not allowed]
      */
-    const emailRules = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const emailRules = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
     const emailVal = emailRules.test(this.state.email);
     if (!emailVal) {
-      this.setState({ emailErrorText: "Not valid email, please try again."});
+      this.setState({ emailErrorText: 'Not valid email, please try again.' });
     } else {
-      this.setState({ emailErrorText: ""});
+      this.setState({ emailErrorText: '' });
     }
 
 
@@ -138,12 +100,56 @@ class Signup extends Component {
      * state.passowrd. Show the error message
      */
     if (this.state.confirmPassword !== this.state.password) {
-      this.setState({ confirmPasswordErrorText: "Password does not match, please try again"});
+      this.setState({ confirmPasswordErrorText: 'Password does not match, please try again' });
     } else {
-      this.setState({ confirmPasswordErrorText: ""});
+      this.setState({ confirmPasswordErrorText: '' });
     }
-
   }
+
+  /**
+   * Update input value to state.userName.
+   * When the inputvalue is empty, show the error message.
+   */
+  userNameOnChange(event) {
+    this.setState({ userName: event.target.value });
+    if (this.state.userName !== '') {
+      this.setState({ userNameErrorText: '' });
+    }
+  }
+
+  /**
+   * Update input value to state.password.
+   * When the inputvalue is empty, show the error message.
+   */
+  passwordOnChange(event) {
+    this.setState({ password: event.target.value });
+    if (this.state.password !== '') {
+      this.setState({ passwordErrorText: '' });
+    }
+  }
+
+  /**
+   * Update input value to state.email.
+   * When the inputvalue is empty, show the error message.
+   */
+  emailOnChange(event) {
+    this.setState({ email: event.target.value });
+    if (this.state.email !== '') {
+      this.setState({ emailErrorText: '' });
+    }
+  }
+
+  /**
+   * Update input value to state.confirmPassword.
+   * When the inputvalue is empty, show the error message.
+   */
+  confirmPasswordOnChange(event) {
+    this.setState({ confirmPassword: event.target.value });
+    if (this.state.confirmPassword !== '') {
+      this.setState({ confirmPasswordErrorText: '' });
+    }
+  }
+
   /**
    * This function is required for each react component. Render function returns
    * UI components and render them in browser.
@@ -156,7 +162,7 @@ class Signup extends Component {
         <p className="title">Mentor In Tech</p>
         <MuiThemeProvider>
           <Card className="sign-up-card">
-            <CardTitle title="Sign Up" titleColor="#ffffff" className="card-title"></CardTitle>
+            <CardTitle title="Sign Up" titleColor="#ffffff" className="card-title" />
             /**
              * Each component is imported in the beginning of the file and called
              * by wrapping component name in tag.
@@ -171,59 +177,77 @@ class Signup extends Component {
              * http://www.material-ui.com/#/components/text-field
              */
             <TextField
-              hintText="User Name"
-              floatingLabelText="User Name"
-              floatingLabelFocusStyle={styles.textField.text}
-              underlineFocusStyle={styles.textField.underline}
-              value={this.state.userName}
-              errorText={this.state.userNameErrorText}
-              maxLength="10"
-              onChange={ this.userNameOnChange.bind(this) }
+                hintText="User Name"
+                floatingLabelText="User Name"
+                floatingLabelFocusStyle={styles.textField.text}
+                underlineFocusStyle={styles.textField.underline}
+                value={this.state.userName}
+                errorText={this.state.userNameErrorText}
+                maxLength="10"
+                /* eslint-disable react/jsx-no-bind */
+                // TODO: We should figure out a way to avoid using `bind`; see the following for why:
+                //       https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
+                onChange={this.userNameOnChange.bind(this)}
+                /* eslint-enable */
             />
             <TextField
-              hintText="Email"
-              floatingLabelText="Email"
-              floatingLabelFocusStyle={styles.textField.text}
-              underlineFocusStyle={styles.textField.underline}
-              value={this.state.email}
-              errorText={this.state.emailErrorText}
-              onChange = {this.emailOnChange.bind(this)}
+                hintText="Email"
+                floatingLabelText="Email"
+                floatingLabelFocusStyle={styles.textField.text}
+                underlineFocusStyle={styles.textField.underline}
+                value={this.state.email}
+                errorText={this.state.emailErrorText}
+                /* eslint-disable react/jsx-no-bind */
+                // TODO: We should figure out a way to avoid using `bind`; see the following for why:
+                //       https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
+                onChange={this.emailOnChange.bind(this)}
+                /* eslint-enable */
             />
             <TextField
-              hintText="Password"
-              floatingLabelText="Password"
-              type="password"
-              floatingLabelFocusStyle={styles.textField.text}
-              underlineFocusStyle={styles.textField.underline}
-              value={this.state.password}
-              errorText={this.state.passwordErrorText}
-              onChange = {this.passwordOnChange.bind(this)}
+                hintText="Password"
+                floatingLabelText="Password"
+                type="password"
+                floatingLabelFocusStyle={styles.textField.text}
+                underlineFocusStyle={styles.textField.underline}
+                value={this.state.password}
+                errorText={this.state.passwordErrorText}
+                /* eslint-disable react/jsx-no-bind */
+                // TODO: We should figure out a way to avoid using `bind`; see the following for why:
+                //       https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
+                onChange={this.passwordOnChange.bind(this)}
+                /* eslint-enable */
 
             />
             <TextField
-              hintText="Confirm Password"
-              floatingLabelText="Confirm Password"
-              type="password"
-              floatingLabelFocusStyle={styles.textField.text}
-              underlineFocusStyle={styles.textField.underline}
-              value={this.state.confirmPassword}
-              errorText={this.state.confirmPasswordErrorText}
-              onChange = {this.confirmPasswordOnChange.bind(this)}
+                hintText="Confirm Password"
+                floatingLabelText="Confirm Password"
+                type="password"
+                floatingLabelFocusStyle={styles.textField.text}
+                underlineFocusStyle={styles.textField.underline}
+                value={this.state.confirmPassword}
+                errorText={this.state.confirmPasswordErrorText}
+                /* eslint-disable react/jsx-no-bind */
+                // TODO: We should figure out a way to avoid using `bind`; see the following for why:
+                //       https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
+                onChange={this.confirmPasswordOnChange.bind(this)}
+                /* eslint-enable */
             />
-            <br/>
-            <br/>
+            <br />
+            <br />
             <RaisedButton
-              label="Sign Up"
-              labelColor="#ffffff"
-              backgroundColor={styles.button.color}
-              onClick={
-                this.onChange.bind(this)
-              }
+                label="Sign Up"
+                labelColor="#ffffff"
+                backgroundColor={styles.button.color}
+                /* eslint-disable react/jsx-no-bind */
+                // TODO: We should figure out a way to avoid using `bind`; see the following for why:
+                //       https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
+                onClick={this.onChange.bind(this)}
+                /* eslint-enable */
             />
-            <hr className="divider"/>
-            <Link to={`/login`}>
+            <hr className="divider" />
+            <Link to="/login">
               <RaisedButton
-                label="Log In"
+                  label="Log In"
               />
             </Link>
           </Card>
