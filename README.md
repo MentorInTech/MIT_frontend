@@ -18,14 +18,14 @@ You will also see any lint errors in the console.
 
 - `npm test`: main script to test your code. You should **ALWAYS** run this script and make sure everything passes before you submit any pull request
   - Dependencies: `npm lint`, `react-scripts test`
-- `npm lint`: lints JavaScript and CSS files for coding style
+- `npm run lint`: lints JavaScript and CSS files for coding style
   - Dependencies: `npm lint:js`, `npm lint:css`
-- `npm lint:js`: lints JavaScript files only, using [ESLint](https://eslint.org/) and slight alternation of [Airbnb's JavaScript Style Guide](https://github.com/airbnb/javascript)
-- `npm lint:css`: lints CSS files only, using [stylelint](https://github.com/stylelint/stylelint) and the [standard guide](https://github.com/stylelint/stylelint-config-standard)
-- `npm lint:fix`: lints JavaScript and CSS files and attempts to fix problems
+- `npm run lint:js`: lints JavaScript files only, using [ESLint](https://eslint.org/) and slight alternation of [Airbnb's JavaScript Style Guide](https://github.com/airbnb/javascript)
+- `npm run lint:css`: lints CSS files only, using [stylelint](https://github.com/stylelint/stylelint) and the [standard guide](https://github.com/stylelint/stylelint-config-standard)
+- `npm run lint:fix`: lints JavaScript and CSS files and attempts to fix problems
   - Dependencies: `npm lint:js:fix`, `npm lint:css:fix`
-- `npm lint:js:fix` lints and attempts to fix JavaScript style violation
-- `npm lint:css:fix` lints and attempts to fix CSS style violation
+- `npm run lint:js:fix` lints and attempts to fix JavaScript style violation
+- `npm run lint:css:fix` lints and attempts to fix CSS style violation
 
 ## Linting
 
