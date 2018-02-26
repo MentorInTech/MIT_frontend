@@ -3,11 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "babel-preset-react": "^6.24.1",
+    "material-ui-places": "^1.1.7",
     "material-ui": "^0.20.0",
-    "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-geosuggest": "^2.7.0",
+    "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.1"
+    "react-scripts": "1.1.1",
+    "react-validation-framework": "^4.2.0",
+    "react": "^16.2.0",
+    "redux-form-material-ui": "^4.3.3",
+    "redux": "^3.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

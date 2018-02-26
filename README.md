@@ -1,9 +1,8 @@
-| Branch | Status |
-|:------:|:------:|
-| `master` | [![Build Status](https://travis-ci.org/MentorInTech/MIT_frontend.svg?branch=master)](https://travis-ci.org/MentorInTech/MIT_frontend) |
-| `develop` | [![Build Status](https://travis-ci.org/MentorInTech/MIT_frontend.svg?branch=develop)](https://travis-ci.org/MentorInTech/MIT_frontend) |
-
 # MIT_frontend
+
+`master` [![build](https://travis-ci.org/MentorInTech/MIT_frontend.svg?branch=master)](https://travis-ci.org/MentorInTech/MIT_frontend) | `develop` [![build](https://travis-ci.org/MentorInTech/MIT_frontend.svg?branch=develop)](https://travis-ci.org/MentorInTech/MIT_frontend)
+
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). Please refer to the complete [User Guide](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md) for more information.
 
 ## Available Scripts
 
