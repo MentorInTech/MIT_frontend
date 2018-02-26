@@ -1,3 +1,8 @@
+| Branch | Status |
+|:------:|:------:|
+| `master` | [![Build Status](https://travis-ci.org/MentorInTech/MIT_frontend.svg?branch=master)](https://travis-ci.org/MentorInTech/MIT_frontend) |
+| `develop` | [![Build Status](https://travis-ci.org/MentorInTech/MIT_frontend.svg?branch=develop)](https://travis-ci.org/MentorInTech/MIT_frontend) |
+
 # MIT_frontend
 
 ## Available Scripts
