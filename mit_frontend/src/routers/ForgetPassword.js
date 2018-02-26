@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2018， Silicon Valley Career Women.
+   All rights reserved.
+ */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -12,10 +16,34 @@ class ForgetPassword extends Component {
     super(props);
 
     this.state = {
-      email: null
+      email: "",
+      emailErrorText: "",
+      passValidation: false
     };
   }
 
+  /**
+   * Update input value to state.email.
+   * When the inputvalue is empty, show the error message.
+   */
+  emailOnChange(event) {
+    this.setState({email: event.target.value});
+    if (this.state.email) {
+      this.setState({ emailErrorText: ""});
+    }
+  }
+
+  onChange(event) {
+    if (this.state.email) {
+      this.setState({ emailErrorText: "This field is required"});
+    } else {
+      this.setState({ emailErrorText: "", passValidation: true});
+    }
+  }
+
+  componentDidUpdate() {
+    console.log(this.state);
+  }
   render() {
     return (
       <div className="App">
@@ -28,18 +56,23 @@ class ForgetPassword extends Component {
               floatingLabelText="Email"
               floatingLabelFocusStyle={styles.textField.text}
               underlineFocusStyle={styles.textField.underline}
-              value={this.state.email}
-              onChange={
-                (event) => {this.setState({email: event.target.value})}
-              }
+              type="email"
+              errorText={this.state.emailErrorText}
+              onChange = {this.emailOnChange.bind(this)}
             />
             <br/>
             <br/>
-            <Link to={`/reset-password`}>
+            <Link to={{
+              pathname: '/reset-password',
+              state: {passValidation: true}
+            }}>
               <RaisedButton
                 label="Reset Password"
                 labelColor="#ffffff"
                 backgroundColor={styles.button.color}
+                onClick={
+                this.onChange.bind(this)
+              }
               />
             </Link>
             <hr className="divider"/>
