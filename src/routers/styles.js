@@ -20,6 +20,6 @@ const styles = {
       color: '#ffffff'
     }
   }
-}
+};
 
 export default styles;

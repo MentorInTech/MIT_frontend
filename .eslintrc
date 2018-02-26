@@ -1,0 +1,28 @@
+{
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "rules": {
+    "comma-dangle": [ "error", "never" ],
+    "function-paren-newline": [ "error", "consistent" ],
+    "indent": [ "error", 2, {
+      "ignoredNodes": [ "JSXElement", "JSXAttribute", "JSXSpreadAttribute" ],
+      "CallExpression": { "arguments": 2 },
+      "FunctionDeclaration": {"body": 1, "parameters": 2},
+      "FunctionExpression": {"body": 1, "parameters": 2},
+      "MemberExpression": 2,
+      "SwitchCase": 1
+    }],
+    "jsx-a11y/anchor-is-valid": [ "off" ],
+    "max-len": [ "error", { "code": 120 } ],
+    "no-use-before-define": [ "error", { "functions": false, "classes": true } ],
+    "react/jsx-filename-extension": [ "off" ],
+    "react/forbid-prop-types": [ "off" ],
+    "react/jsx-indent": [ "error", 2 ],
+    "react/jsx-indent-props": [ "error", 4 ],
+    "react/jsx-no-comment-textnodes": [ "off" ]
+  }
+}
