@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "babel-eslint": "^8.2.2",
     "babel-preset-react": "^6.24.1",
+    "eslint-plugin-react": "^7.7.0",
     "material-ui": "^0.20.0",
     "material-ui-places": "^1.1.7",
     "react": "^16.2.0",
