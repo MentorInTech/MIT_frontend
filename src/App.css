@@ -5,7 +5,7 @@
 .App {
   text-align: center;
   background-color: #e8eaf6;
-  height: 100vh;
+  height: 145vh;
 }
 
 p {
@@ -48,7 +48,19 @@ p {
 .user-info-card {
   margin: auto;
   width: 432px;
-  height: 880px;
+  height: 1320px;
+}
+
+.user-info-card p {
+  text-align: left;
+  padding-top: 35px;
+  padding-left: 35px;
+}
+
+input[type='radio'],
+label {
+  text-align: left;
+  padding-left: 5px;
 }
 
 .goal-selection-card {
