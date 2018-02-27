@@ -2,15 +2,16 @@
  * Copyright (c) 2018， Silicon Valley Career Women.
  * All rights reserved.
  */
-import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Card, CardTitle } from 'material-ui/Card';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
+import { RadioButton } from 'material-ui/RadioButton';
+import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
-import RadioButton from 'material-ui/RadioButton';
-import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
+import React, { Component } from 'react';
+import TextField from 'material-ui/TextField';
+
 import '../App.css';
 import styles from './styles';
 
@@ -62,13 +63,13 @@ class UserInfo extends Component {
     console.log(this.state);
   }
 
-  /**
   setJobRole = jobRole => this.setState({ jobRole });
 
   handleAgeChange = (event, index, value) => this.setState({ age: value });
 
   handleCategoryChange = (event, index, value) => this.setState({ jobCategory: value });
 
+  /**
    * This function is required for each react component. Render function returns
    * UI components and render them in browser.
    * @param {null}
