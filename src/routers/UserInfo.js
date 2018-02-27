@@ -1,10 +1,7 @@
-/**
- * Copyright (c) 2018， Silicon Valley Career Women.
- * All rights reserved.
- */
 import { Card, CardTitle } from 'material-ui/Card';
-import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
+import AutoComplete from 'material-ui/AutoComplete';
 import DropDownMenu from 'material-ui/DropDownMenu';
+import Geosuggest from 'react-geosuggest';
 import MenuItem from 'material-ui/MenuItem';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RadioButton from 'material-ui/RadioButton';
@@ -15,40 +12,86 @@ import TextField from 'material-ui/TextField';
 import '../App.css';
 import styles from './styles';
 
-// Initiate Job Year
-const jobYears = [];
-for (let i = 0; i <= 50; i += 1) {
-  jobYears.push(<MenuItem value={i} key={i} primaryText={i} />);
+/* Need this to circumvent ESlint when using Google API */
+/* global google */
+
+/* Initiate Job Year */
+const jobYear = [];
+for (let i = 1; i < 100; i += 1) {
+  jobYear.push(<MenuItem value={i} key={i} primaryText={i} />);
 }
 
-// Initiate Grad Year
+/* Initiate Grad Year */
 const thisYear = new Date().getFullYear();
 const gradYears = [];
 for (let i = thisYear; i >= 1900; i -= 1) {
   gradYears.push(<MenuItem value={i} key={i} primaryText={i} />);
 }
 
+// Initiate jobCategories
+const jobCategories = [
+  'Account Manager',
+  'Accountant',
+  'Administrative Support',
+  'Analyst',
+  'Auditor',
+  'Business Partnerships',
+  'Communications',
+  'Compliance',
+  'Content Strategist/UX Writer',
+  'Data Scientist',
+  'Electrical Engineer',
+  'Event Planner',
+  'HR Business Partner',
+  'Industrial Designer',
+  'Interaction Designer',
+  'Learning & Development',
+  'Manufacturing Engineer',
+  'Marketing',
+  'Mechanical Engineer',
+  'Motion Designer',
+  'New Business Sales',
+  'Operations and Services',
+  'Product Manager',
+  'Program Manager',
+  'Public Relations',
+  'Sales Engineer',
+  'Software Engineer',
+  'Solutions Consultant',
+  'Sourcing/Supply Chain',
+  'Staffing',
+  'Strategy & Operations',
+  'Technical Solutions Engineer',
+  'Trainer/Instructional Designer',
+  'UX Engineer',
+  'UX Researcher',
+  'Visual Designer'
+];
+
+
 class UserInfo extends Component {
   constructor(props) {
     super(props);
-    /**
-     * this.state is a react property to store data. It will be updated by
-     * this.setState()
+    /*
+     * this.state is a react p,
      */
     this.state = {
       firstName: '',
-      lastname: '',
+      lastName: '',
       age: 'Under 22',
       city: '',
       jobRole: 'Internship',
       jobCategory: '',
       jobLevel: '',
-      jobYears: -1,
+      jobYears: 0,
       degree: '',
       school: '',
       major: '',
       gradYear: 0,
-      interest: ''
+      interest: '',
+      firstNameErrorText: '',
+      lastNameErrorText: '',
+      interestErrorText: ''
     };
   }
 
@@ -63,11 +106,37 @@ class UserInfo extends Component {
     console.log(this.state);
   }
 
-  setJobRole = jobRole => this.setState({ jobRole });
+  onSuggestSelect(suggest) {
+    if (suggest !== undefined) {
+      this.setState({ city: suggest.description });
+      console.log(suggest.description);
+    } else {
+      console.log('No location input');
+    }
+  }
+
+  setCategoryChange(categoryChange) {
+    this.setState({ input: categoryChange });
+  }
+
+  setJobRole = (jobRole) => {
+    this.setState({ jobRole });
+  };
 
   handleAgeChange = (event, index, value) => this.setState({ age: value });
+  handleCityChange = (event, index, value) => this.setState({ city: value });
+  handleDegreeChange = (event, index, value) => this.setState({ degree: value });
+  handleGradYearChange = (event, index, value) => this.setState({ gradYear: value });
+  handleJobYearChange = (event, index, value) => this.setState({ jobYears: value });
+  handleLevelChange = (event, index, value) => this.setState({ jobLevel: value });
 
-  handleCategoryChange = (event, index, value) => this.setState({ jobCategory: value });
+  firstNameOnChange() {
+    if (this.state.firstName.match(/^[A-Z][a-z0-9_-]{1,14}/)) {
+      this.setState({ firstNameErrorText: 'testing' });
+    } else {
+      this.setState({ firstNameErrorText: 'Name must start with a letter and be capitialized' });
+    }
+  }
 
   /**
    * This function is required for each react component. Render function returns
@@ -75,7 +144,12 @@ class UserInfo extends Component {
    * @param {null}
    * @return {null}
    */
+
   render() {
+    const fixtures = [
+      { label: 'San Jose, CA', location: { lat: 37.3382, lng: 121.8863 } }
+    ];
+
     return (
       <div className="App">
         <p className="title">Mentor In Tech</p>
@@ -97,21 +171,29 @@ class UserInfo extends Component {
              */
             <p>Name</p>
             <TextField
+                required
                 hintText="First Name"
                 floatingLabelText="First Name"
                 floatingLabelFocusStyle={styles.textField.text}
                 underlineFocusStyle={styles.textField.underline}
                 value={this.state.firstName}
+                errorText={this.state.firstNameErrorText}
+                minLength="2"
+                maxLength="15"
+
                 onChange={
                   (event) => { this.setState({ firstName: event.target.value }); }
                 }
             />
             <TextField
+                required
                 hintText="Last Name"
                 floatingLabelText="Last Name"
                 floatingLabelFocusStyle={styles.textField.text}
                 underlineFocusStyle={styles.textField.underline}
                 value={this.state.lastName}
+                minLength="2"
+                maxLength="15"
                 onChange={
                   (event) => { this.setState({ lastName: event.target.value }); }
                 }
@@ -129,19 +211,29 @@ class UserInfo extends Component {
               <MenuItem value="56 - 60" primaryText="56 - 60" />
               <MenuItem value="Above 60" primaryText="Above 60" />
             </DropDownMenu>
-            <p>Location</p>
-            <TextField
-                hintText="City"
-                floatingLabelText="City"
-                type="city"
-                floatingLabelFocusStyle={styles.textField.text}
-                underlineFocusStyle={styles.textField.underline}
-                value={this.state.city}
-                onChange={
-                  (event) => { this.setState({ city: event.target.value }); }
-                }
-            />
-            <p>Job</p>
+            <p>City</p>
+            <div>
+              <Geosuggest
+                  ref={(el) => { this.geoSuggest = el; }}
+                  placeholder="Start typing!"
+                  initialValue=""
+                  fixtures={fixtures}
+                  /* eslint-disable react/jsx-no-bind */
+                  // TODO: We should figure out a way to avoid using `bind`; see the following for why:
+                  //       https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
+                  onSuggestSelect={this.onSuggestSelect.bind(this)}
+                  /* eslint-enable */
+                  location={new google.maps.LatLng(37.3382, 121.8863)}
+                  radius="20"
+              />
+
+              <button onClick={() => this.geoSuggest.focus()}>Focus</button>
+              <button onClick={() => this.geoSuggest.clear()}>Clear</button>
+
+            </div>
+
+            <p>Job Type</p>
+            <br />
             <RadioButton
                 label="Internship"
                 /* eslint-disable react/jsx-no-bind */
@@ -152,6 +244,15 @@ class UserInfo extends Component {
                 checked={this.state.jobRole === 'Internship'}
             />
             <RadioButton
+                label="Contractor"
+                /* eslint-disable react/jsx-no-bind */
+                // TODO: We should figure out a way to avoid using `bind`; see the following for why:
+                //       https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
+                onClick={this.setJobRole.bind(this, 'Contractor')}
+                /* eslint-enable */
+                checked={this.state.jobRole === 'Contractor'}
+            />
+            <RadioButton
                 label="Full-time"
                 /* eslint-disable react/jsx-no-bind */
                 // TODO: We should figure out a way to avoid using `bind`; see the following for why:
@@ -160,114 +261,34 @@ class UserInfo extends Component {
                 /* eslint-enable */
                 checked={this.state.jobRole === 'Full-time'}
             />
-            <DropDownMenu value={this.state.jobCategory} onChange={this.handleCategoryChange}>
-              <MenuItem value="" primaryText="Category" />
-              <MenuItem
-                  value="Engineering & Technology"
-                  rightIcon={<ArrowDropRight />}
-                  primaryText="Engineering & Technology"
-                  menuItems={[
-                    <MenuItem value="Software Engineer" primaryText="Software Engineer" />,
-                    <MenuItem value="Product Manager" primaryText="Product Manager" />,
-                    <MenuItem value="Sales Engineer" primaryText="Sales Engineer" />,
-                    <MenuItem value="Electrical Engineer" primaryText="Electrical Engineer" />,
-                    <MenuItem value="Sourcing/Supply Chain" primaryText="Sourcing/Supply Chain" />,
-                    <MenuItem value="Mechanical Engineer" primaryText="Mechanical Engineer" />,
-                    <MenuItem value="Manufacturing Engineer" primaryText="Manufacturing Engineer" />,
-                    <MenuItem value="Industrial Designer" primaryText="Industrial Designer" />,
-                    <MenuItem value="Data Scientist" primaryText="Data Scientist" />
-                  ]}
-              />
-              <MenuItem
-                  value="Marketing & Communications"
-                  rightIcon={<ArrowDropRight />}
-                  primaryText="Marketing & Communications"
-                  menuItems={[
-                    <MenuItem value="Marketing" primaryText="Marketing" />,
-                    <MenuItem value="Public Relations" primaryText="Public Relations" />,
-                    <MenuItem value="Analyst" primaryText="Analyst" />,
-                    <MenuItem value="Communications" primaryText="Communications" />,
-                    <MenuItem value="Event Planner" primaryText="Event Planner" />
-                  ]}
-              />
-              <MenuItem
-                  value="Business Strategy"
-                  rightIcon={<ArrowDropRight />}
-                  primaryText="Business Strategy"
-                  menuItems={[
-                    <MenuItem value="Analyst" primaryText="Analyst" />,
-                    <MenuItem value="Strategy & Operations" primaryText="Strategy & Operations" />,
-                    <MenuItem value="Analyst" primaryText="Analyst" />,
-                    <MenuItem value="Program Manager" primaryText="Program Manager" />
-                  ]}
-              />
-              <MenuItem
-                  value="Sales, Service & Support"
-                  rightIcon={<ArrowDropRight />}
-                  primaryText="Sales, Service & Support"
-                  menuItems={[
-                    <MenuItem value="Account Manager" primaryText="Account Manager" />,
-                    <MenuItem value="Business Partnerships" primaryText="Business Partnerships" />,
-                    <MenuItem value="New Business Sales" primaryText="New Business Sales" />,
-                    <MenuItem value="Solutions Consultant" primaryText="Solutions Consultant" />,
-                    <MenuItem value="Program Manager" primaryText="Program Manager" />,
-                    <MenuItem value="Analyst" primaryText="Analyst" />,
-                    <MenuItem value="Trainer/Instructional Designer" primaryText="Trainer/Instructional Designer" />,
-                    <MenuItem value="Strategy & Operations" primaryText="Strategy & Operations" />,
-                    <MenuItem value="Technical Solutions Engineer" primaryText="Technical Solutions Engineer" />
-                  ]}
-              />
-              <MenuItem
-                  value="Design"
-                  rightIcon={<ArrowDropRight />}
-                  primaryText="Design"
-                  menuItems={[
-                    <MenuItem value="UX Engineer" primaryText="UX Engineer" />,
-                    <MenuItem value="Visual Designer" primaryText="Visual Designer" />,
-                    <MenuItem value="Motion Designer" primaryText="Motion Designer" />,
-                    <MenuItem value="Interaction Designer" primaryText="Interaction Designer" />,
-                    <MenuItem value="UX Researcher" primaryText="UX Researcher" />,
-                    <MenuItem value="Content Strategist/UX Writer" primaryText="Content Strategist/UX Writer" />
-                  ]}
-              />
-              <MenuItem
-                  value="Finance"
-                  rightIcon={<ArrowDropRight />}
-                  primaryText="Finance"
-                  menuItems={[
-                    <MenuItem value="Analyst" primaryText="Analyst" />,
-                    <MenuItem value="Accountant" primaryText="Accountant" />,
-                    <MenuItem value="Operations and Services" primaryText="Operations and Services" />,
-                    <MenuItem value="Auditor" primaryText="Auditor" />,
-                    <MenuItem value="Compliance" primaryText="Compliance" />
-                  ]}
-              />
-              <MenuItem
-                  value="People"
-                  rightIcon={<ArrowDropRight />}
-                  primaryText="People"
-                  menuItems={[
-                    <MenuItem value="Staffing" primaryText="Staffing" />,
-                    <MenuItem value="HR Business Partner" primaryText="HR Business Partner" />,
-                    <MenuItem value="Learning & Development" primaryText="Learning & Development" />,
-                    <MenuItem value="Analyst" primaryText="Analyst" />,
-                    <MenuItem value="Straegy & Operations" primaryText="Straegy & Operations" />,
-                    <MenuItem value="Administrative Support" primaryText="Administrative Support" />,
-                    <MenuItem value="Program Manager" primaryText="Program Manager" />
-                  ]}
-              />
-            </DropDownMenu>
+
+            <p>Job Category</p>
+            <AutoComplete
+                floatingLabelText="Type to search"
+                filter={AutoComplete.fuzzyFilter}
+                /* eslint-disable react/jsx-no-bind */
+                // TODO: We should figure out a way to avoid using `bind`; see the following for why:
+                //       https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
+                onUpdateInput={this.setCategoryChange.bind(this)}
+                /* eslint-enable */
+                searchText={this.state.input}
+                dataSource={jobCategories}
+                maxSearchResults={5}
+            />
+            <br />
+
             <DropDownMenu value={this.state.jobLevel} onChange={this.handleLevelChange}>
-              <MenuItem value="" primaryText="Level" />
+              <MenuItem value="" primaryText="Proficiency Level" />
               <MenuItem value="Entry" primaryText="Entry" />
               <MenuItem value="Senior" primaryText="Senior" />
               <MenuItem value="Manager" primaryText="Manager" />
               <MenuItem value="Director" primaryText="Director" />
             </DropDownMenu>
-            <DropDownMenu value={this.state.jobYears} onChange={this.handleJobYearChange}>
-              <MenuItem value={-1} primaryText="Years" />
-              {jobYears}
+            <DropDownMenu maxHeight={300} value={this.state.jobYears} onChange={this.handleJobYearChange}>
+              <MenuItem value={0} primaryText="Years of Experience" />
+              {jobYear}
             </DropDownMenu>
+
             <p>Education</p>
             <DropDownMenu value={this.state.degree} onChange={this.handleDegreeChange}>
               <MenuItem value="" primaryText="Degree" />
@@ -276,21 +297,50 @@ class UserInfo extends Component {
               <MenuItem value="Master" primaryText="Master" />
               <MenuItem value="PhD" primaryText="PhD" />
             </DropDownMenu>
-            <DropDownMenu value={this.state.school} onChange={this.handleSchoolChange}>
-              <MenuItem value="" primaryText="School" />
-            </DropDownMenu>
-            <DropDownMenu value={this.state.major} onChange={this.handleMajorChange}>
-              <MenuItem value="" primaryText="Major" />
-            </DropDownMenu>
+            <br />
+
+            <TextField
+                required
+                hintText="School"
+                floatingLabelText="School"
+                floatingLabelFocusStyle={styles.textField.text}
+                underlineFocusStyle={styles.textField.underline}
+                value={this.state.school}
+                onChange={
+                  (event) => { this.setState({ school: event.target.value }); }
+                }
+            />
+            <br />
+
+            <TextField
+                required
+                hintText="Major"
+                floatingLabelText="Major"
+                floatingLabelFocusStyle={styles.textField.text}
+                underlineFocusStyle={styles.textField.underline}
+                value={this.state.major}
+                onChange={
+                  (event) => { this.setState({ major: event.target.value }); }
+                }
+            />
+            <br />
+
             <DropDownMenu value={this.state.gradYear} onChange={this.handleGradYearChange}>
               <MenuItem value={0} primaryText="Grad Year" />
               {gradYears}
             </DropDownMenu>
+
             <p>Interest</p>
             <TextField
                 hintText="Let me know more about you here!"
                 multiLine
                 rowsMax={4}
+                value={this.state.interest}
+                minLength="3"
+                maxLength="100"
+                onChange={
+                  (event) => { this.setState({ interest: event.target.value }); }
+                }
             />
             <br />
             <br />
@@ -298,6 +348,7 @@ class UserInfo extends Component {
                 label="Next"
                 labelColor="#ffffff"
                 backgroundColor={styles.button.color}
+                onChange={this.firstNameOnChange}
             />
           </Card>
         </MuiThemeProvider>
@@ -305,5 +356,6 @@ class UserInfo extends Component {
     );
   }
 }
+
 
 export default UserInfo;
