@@ -1,7 +1,12 @@
-/*
-  Copyright (c) 2018， Silicon Valley Career Women.
-  All rights reserved.
-*/
+/**
+ * Copyright (c) 2018， Silicon Valley Career Women.
+ * All rights reserved.
+ */
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
 .App {
   text-align: center;
   background-color: #e8eaf6;

@@ -1,7 +1,8 @@
 /**
  * Copyright (c) 2018， Silicon Valley Career Women.
-   All rights reserved.
+ * All rights reserved.
  */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';

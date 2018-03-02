@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /**
  * Copyright (c) 2018， Silicon Valley Career Women.
    All rights reserved.
@@ -7,7 +9,7 @@ import { Link } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Card, CardTitle } from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from 'material-ui/Button';
 import '../App.css';
 import styles from './styles';
 
@@ -102,7 +104,8 @@ class Login extends Component {
             />
             <br />
             <br />
-            <RaisedButton
+            <Button
+                variant="raised"
                 label="Log In"
                 labelColor="#ffffff"
                 backgroundColor={styles.button.color}
@@ -117,7 +120,8 @@ class Login extends Component {
             </Link>
             <hr className="divider" />
             <Link to="/signup">
-              <RaisedButton
+              <Button
+                  variant="raised"
                   label="Sign Up"
               />
             </Link>
