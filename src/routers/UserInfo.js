@@ -8,6 +8,7 @@ import RadioButton from 'material-ui/RadioButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
+import axios from 'axios';
 
 import '../App.css';
 import styles from './styles';
@@ -85,7 +86,7 @@ class UserInfo extends Component {
       jobLevel: '',
       jobYears: 0,
       degree: '',
-      school: '',
+      schools: [],
       major: '',
       gradYear: 0,
       interest: '',
@@ -102,6 +103,14 @@ class UserInfo extends Component {
    * @param {null}
    * @return {null}
    */
+  componentDidMount() {
+    axios.get('http://localhost:3000/school')
+        .then((res) => {
+          const schools = res.data.map(obj => obj);
+          this.setState({ schools });
+        });
+  }
+
   componentDidUpdate() {
     console.log(this.state);
   }
@@ -305,9 +314,9 @@ class UserInfo extends Component {
                 floatingLabelText="School"
                 floatingLabelFocusStyle={styles.textField.text}
                 underlineFocusStyle={styles.textField.underline}
-                value={this.state.school}
+                value={this.state.schools}
                 onChange={
-                  (event) => { this.setState({ school: event.target.value }); }
+                  (event) => { this.setState({ schools: event.target.value }); }
                 }
             />
             <br />
