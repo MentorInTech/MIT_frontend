@@ -87,6 +87,7 @@ class UserInfo extends Component {
       jobYears: 0,
       degree: '',
       schools: [],
+      school: '',
       major: '',
       gradYear: 0,
       interest: '',
@@ -316,6 +317,9 @@ class UserInfo extends Component {
                 underlineFocusStyle={styles.textField.underline}
                 dataSource={this.state.schools}
                 searchText={this.state.input}
+                onUpdateInput={
+                  (searchText) => { this.setState({ school: searchText }); }
+                }
             />
             <br />
 
