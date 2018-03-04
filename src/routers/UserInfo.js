@@ -308,16 +308,14 @@ class UserInfo extends Component {
             </DropDownMenu>
             <br />
 
-            <TextField
+            <AutoComplete
                 required
                 hintText="School"
                 floatingLabelText="School"
                 floatingLabelFocusStyle={styles.textField.text}
                 underlineFocusStyle={styles.textField.underline}
-                value={this.state.schools}
-                onChange={
-                  (event) => { this.setState({ schools: event.target.value }); }
-                }
+                dataSource={this.state.schools}
+                searchText={this.state.input}
             />
             <br />
 
