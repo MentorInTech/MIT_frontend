@@ -54,7 +54,7 @@ If you wish to run linters outside of NPM environment (as maybe useful while
 setting up editor plugins), you might want to install the modules globally:
 
 ```shell
-npm install --global
+npm install --global \
     babel-eslint \
     eslint-config-airbnb \
     eslint-plugin-import \
