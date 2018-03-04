@@ -79,12 +79,7 @@ class Login extends Component {
                 value={this.state.userName}
                 errorText={this.state.userNameErrorText}
                 maxLength="10"
-
-                /* eslint-disable react/jsx-no-bind */
-                // TODO: We should figure out a way to avoid using `bind`; see the following for why:
-                //       https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
-                onChange={this.userNameOnChange.bind(this)}
-                /* eslint-enable */
+                onChange={event => this.userNameOnChange(event)}
             />
             <TextField
                 hintText="Password"
@@ -94,11 +89,7 @@ class Login extends Component {
                 underlineFocusStyle={styles.textField.underline}
                 value={this.state.password}
                 errorText={this.state.passwordErrorText}
-                /* eslint-disable react/jsx-no-bind */
-                // TODO: We should figure out a way to avoid using `bind`; see the following for why:
-                //       https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
-                onChange={this.passwordOnChange.bind(this)}
-                /* eslint-enable */
+                onChange={event => this.passwordOnChange(event)}
             />
             <br />
             <br />
@@ -106,11 +97,7 @@ class Login extends Component {
                 label="Log In"
                 labelColor="#ffffff"
                 backgroundColor={styles.button.color}
-                /* eslint-disable react/jsx-no-bind */
-                // TODO: We should figure out a way to avoid using `bind`; see the following for why:
-                //       https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
-                onClick={this.onChange.bind(this)}
-                /* eslint-enable */
+                onClick={() => this.onChange()}
             />
             <Link to="/forget-password" style={{ textDecoration: 'none' }}>
               <p className="forget-password">Forget Password?</p>
