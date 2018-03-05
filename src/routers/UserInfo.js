@@ -189,7 +189,6 @@ class UserInfo extends Component {
                 errorText={this.state.firstNameErrorText}
                 minLength="2"
                 maxLength="15"
-
                 onChange={
                   (event) => { this.setState({ firstName: event.target.value }); }
                 }
@@ -227,11 +226,7 @@ class UserInfo extends Component {
                   placeholder="Start typing!"
                   initialValue=""
                   fixtures={fixtures}
-                  /* eslint-disable react/jsx-no-bind */
-                  // TODO: We should figure out a way to avoid using `bind`; see the following for why:
-                  //       https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
-                  onSuggestSelect={this.onSuggestSelect.bind(this)}
-                  /* eslint-enable */
+                  onSuggestSelect={suggest => this.onSuggestSelect(suggest)}
                   location={new google.maps.LatLng(37.3382, 121.8863)}
                   radius="20"
               />
@@ -245,29 +240,17 @@ class UserInfo extends Component {
             <br />
             <RadioButton
                 label="Internship"
-                /* eslint-disable react/jsx-no-bind */
-                // TODO: We should figure out a way to avoid using `bind`; see the following for why:
-                //       https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
-                onClick={this.setJobRole.bind(this, 'Internship')}
-                /* eslint-enable */
+                onClick={() => this.setJobRole('Internship')}
                 checked={this.state.jobRole === 'Internship'}
             />
             <RadioButton
                 label="Contractor"
-                /* eslint-disable react/jsx-no-bind */
-                // TODO: We should figure out a way to avoid using `bind`; see the following for why:
-                //       https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
-                onClick={this.setJobRole.bind(this, 'Contractor')}
-                /* eslint-enable */
+                onClick={() => this.setJobRole('Contractor')}
                 checked={this.state.jobRole === 'Contractor'}
             />
             <RadioButton
                 label="Full-time"
-                /* eslint-disable react/jsx-no-bind */
-                // TODO: We should figure out a way to avoid using `bind`; see the following for why:
-                //       https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
-                onClick={this.setJobRole.bind(this, 'Full-time')}
-                /* eslint-enable */
+                onClick={() => this.setJobRole('Full-time')}
                 checked={this.state.jobRole === 'Full-time'}
             />
 
@@ -275,11 +258,7 @@ class UserInfo extends Component {
             <AutoComplete
                 floatingLabelText="Type to search"
                 filter={AutoComplete.fuzzyFilter}
-                /* eslint-disable react/jsx-no-bind */
-                // TODO: We should figure out a way to avoid using `bind`; see the following for why:
-                //       https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
-                onUpdateInput={this.setCategoryChange.bind(this)}
-                /* eslint-enable */
+                onUpdateInput={searchText => this.setCategoryChange(searchText)}
                 searchText={this.state.input}
                 dataSource={jobCategories}
                 maxSearchResults={5}
