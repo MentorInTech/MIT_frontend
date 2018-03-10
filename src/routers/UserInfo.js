@@ -115,7 +115,7 @@ class UserInfo extends Component {
     console.log(this.state);
   }
 
-  onSuggestSelect(suggest) {
+  onSuggestSelect = (suggest) => {
     if (suggest !== undefined) {
       this.setState({ city: suggest.description });
       console.log(suggest.description);
@@ -124,13 +124,9 @@ class UserInfo extends Component {
     }
   }
 
-  setCategoryChange(categoryChange) {
-    this.setState({ input: categoryChange });
-  }
+  setCategoryChange = categoryChange => this.setState({ input: categoryChange });
 
-  setJobRole = (jobRole) => {
-    this.setState({ jobRole });
-  };
+  setJobRole = jobRole => this.setState({ jobRole });
 
   handleAgeChange = (event, index, value) => this.setState({ age: value });
   handleCityChange = (event, index, value) => this.setState({ city: value });
@@ -139,7 +135,7 @@ class UserInfo extends Component {
   handleJobYearChange = (event, index, value) => this.setState({ jobYears: value });
   handleLevelChange = (event, index, value) => this.setState({ jobLevel: value });
 
-  firstNameOnChange() {
+  firstNameOnChange = () => {
     if (this.state.firstName.match(/^[A-Z][a-z0-9_-]{1,14}/)) {
       this.setState({ firstNameErrorText: 'testing' });
     } else {

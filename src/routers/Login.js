@@ -28,7 +28,7 @@ class Login extends Component {
    * This function is called when sign up button clicked. Will check all the fields, if there
    * is any empty fields in TextField, highlight the field.
    */
-  onChange() {
+  onChange = () => {
     if (!this.state.userName) {
       this.setState({ userNameErrorText: 'This field is required' });
     } else {
@@ -46,7 +46,7 @@ class Login extends Component {
    * Update input value to state.userName.
    * When the inputvalue is empty, show the error message.
    */
-  userNameOnChange(event) {
+  userNameOnChange = (event) => {
     this.setState({ userName: event.target.value });
     if (this.state.userName) {
       this.setState({ userNameErrorText: '' });
@@ -57,7 +57,7 @@ class Login extends Component {
    * Update input value to state.password.
    * When the inputvalue is empty, show the error message.
    */
-  passwordOnChange(event) {
+  passwordOnChange = (event) => {
     this.setState({ password: event.target.value });
     if (this.state.password) {
       this.setState({ passwordErrorText: '' });
@@ -79,7 +79,7 @@ class Login extends Component {
                 value={this.state.userName}
                 errorText={this.state.userNameErrorText}
                 maxLength="10"
-                onChange={event => this.userNameOnChange(event)}
+                onChange={this.userNameOnChange}
             />
             <TextField
                 hintText="Password"
@@ -89,7 +89,7 @@ class Login extends Component {
                 underlineFocusStyle={styles.textField.underline}
                 value={this.state.password}
                 errorText={this.state.passwordErrorText}
-                onChange={event => this.passwordOnChange(event)}
+                onChange={this.passwordOnChange}
             />
             <br />
             <br />
@@ -97,7 +97,7 @@ class Login extends Component {
                 label="Log In"
                 labelColor="#ffffff"
                 backgroundColor={styles.button.color}
-                onClick={() => this.onChange()}
+                onClick={this.onChange}
             />
             <Link to="/forget-password" style={{ textDecoration: 'none' }}>
               <p className="forget-password">Forget Password?</p>

@@ -23,7 +23,7 @@ class ResetPassword extends Component {
     };
   }
 
-  onChange() {
+  onChange = () => {
     /**
      * check the password strongness:
      * Minimum eight characters, at least one uppercase letter, one lowercase letter,
@@ -56,7 +56,7 @@ class ResetPassword extends Component {
    * Update input value to state.password.
    * When the inputvalue is empty, show the error message.
    */
-  passwordOnChange(event) {
+  passwordOnChange = (event) => {
     this.setState({ password: event.target.value });
     if (this.state.password) {
       this.setState({ passwordErrorText: '' });
@@ -67,7 +67,7 @@ class ResetPassword extends Component {
    * Update input value to state.confirmPassword.
    * When the inputvalue is empty, show the error message.
    */
-  confirmPasswordOnChange(event) {
+  confirmPasswordOnChange = (event) => {
     this.setState({ confirmPassword: event.target.value });
     if (this.state.confirmPassword) {
       this.setState({ confirmPasswordErrorText: '' });
@@ -89,7 +89,7 @@ class ResetPassword extends Component {
                 underlineFocusStyle={styles.textField.underline}
                 value={this.state.password}
                 errorText={this.state.passwordErrorText}
-                onChange={event => this.passwordOnChange(event)}
+                onChange={this.passwordOnChange}
             />
             <TextField
                 hintText="Confirm New Password"
@@ -99,7 +99,7 @@ class ResetPassword extends Component {
                 underlineFocusStyle={styles.textField.underline}
                 value={this.state.confirmPassword}
                 errorText={this.state.confirmPasswordErrorText}
-                onChange={event => this.confirmPasswordOnChange(event)}
+                onChange={this.confirmPasswordOnChange}
             />
             <br />
             <br />
@@ -107,7 +107,7 @@ class ResetPassword extends Component {
                 label="Change Password"
                 labelColor="#ffffff"
                 backgroundColor={styles.button.color}
-                onClick={() => this.onChange()}
+                onClick={this.onChange}
             />
             <hr className="divider" />
             <Link to="/login">

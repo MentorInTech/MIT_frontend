@@ -27,7 +27,7 @@ class ForgetPassword extends Component {
   }
 
 
-  onChange() {
+  onChange = () => {
     if (this.state.email) {
       this.setState({ emailErrorText: 'This field is required' });
     } else {
@@ -60,7 +60,7 @@ class ForgetPassword extends Component {
                 underlineFocusStyle={styles.textField.underline}
                 type="email"
                 errorText={this.state.emailErrorText}
-                onChange={event => this.emailOnChange(event)}
+                onChange={this.emailOnChange}
             />
             <br />
             <br />
@@ -73,7 +73,7 @@ class ForgetPassword extends Component {
                   label="Reset Password"
                   labelColor="#ffffff"
                   backgroundColor={styles.button.color}
-                  onClick={() => this.onChange()}
+                  onClick={this.onChange}
               />
             </Link>
             <hr className="divider" />

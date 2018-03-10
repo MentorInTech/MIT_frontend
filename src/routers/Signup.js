@@ -44,7 +44,7 @@ class Signup extends Component {
    * This function is called when sign up button clicked. Will check all the fields, if there
    * is any empty fields in TextField, highlight the field.
    */
-  onChange() {
+  onChange = () => {
     if (this.state.userName === '') {
       this.setState({ userNameErrorText: 'This field is required' });
     } else {
@@ -110,7 +110,7 @@ class Signup extends Component {
    * Update input value to state.userName.
    * When the inputvalue is empty, show the error message.
    */
-  userNameOnChange(event) {
+  userNameOnChange = (event) => {
     this.setState({ userName: event.target.value });
     if (this.state.userName !== '') {
       this.setState({ userNameErrorText: '' });
@@ -121,7 +121,7 @@ class Signup extends Component {
    * Update input value to state.password.
    * When the inputvalue is empty, show the error message.
    */
-  passwordOnChange(event) {
+  passwordOnChange = (event) => {
     this.setState({ password: event.target.value });
     if (this.state.password !== '') {
       this.setState({ passwordErrorText: '' });
@@ -132,7 +132,7 @@ class Signup extends Component {
    * Update input value to state.email.
    * When the inputvalue is empty, show the error message.
    */
-  emailOnChange(event) {
+  emailOnChange = (event) => {
     this.setState({ email: event.target.value });
     if (this.state.email !== '') {
       this.setState({ emailErrorText: '' });
@@ -143,7 +143,7 @@ class Signup extends Component {
    * Update input value to state.confirmPassword.
    * When the inputvalue is empty, show the error message.
    */
-  confirmPasswordOnChange(event) {
+  confirmPasswordOnChange = (event) => {
     this.setState({ confirmPassword: event.target.value });
     if (this.state.confirmPassword !== '') {
       this.setState({ confirmPasswordErrorText: '' });
@@ -184,7 +184,7 @@ class Signup extends Component {
                 value={this.state.userName}
                 errorText={this.state.userNameErrorText}
                 maxLength="10"
-                onChange={event => this.userNameOnChange(event)}
+                onChange={this.userNameOnChange}
             />
             <TextField
                 hintText="Email"
@@ -193,7 +193,7 @@ class Signup extends Component {
                 underlineFocusStyle={styles.textField.underline}
                 value={this.state.email}
                 errorText={this.state.emailErrorText}
-                onChange={event => this.emailOnChange(event)}
+                onChange={this.emailOnChange}
             />
             <TextField
                 hintText="Password"
@@ -203,7 +203,7 @@ class Signup extends Component {
                 underlineFocusStyle={styles.textField.underline}
                 value={this.state.password}
                 errorText={this.state.passwordErrorText}
-                onChange={event => this.passwordOnChange(event)}
+                onChange={this.passwordOnChange}
             />
             <TextField
                 hintText="Confirm Password"
@@ -213,7 +213,7 @@ class Signup extends Component {
                 underlineFocusStyle={styles.textField.underline}
                 value={this.state.confirmPassword}
                 errorText={this.state.confirmPasswordErrorText}
-                onChange={event => this.confirmPasswordOnChange(event)}
+                onChange={this.confirmPasswordOnChange}
             />
             <br />
             <br />
@@ -221,7 +221,7 @@ class Signup extends Component {
                 label="Sign Up"
                 labelColor="#ffffff"
                 backgroundColor={styles.button.color}
-                onClick={() => this.onChange()}
+                onClick={this.onChange}
             />
             <hr className="divider" />
             <Link to="/login">
