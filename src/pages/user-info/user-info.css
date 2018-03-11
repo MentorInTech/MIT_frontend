@@ -1,0 +1,38 @@
+#user-info {
+  margin: 100px auto;
+  width: 500px;
+}
+
+.card-header {
+  background-color: #3f51b5;
+}
+
+.card-header-title {
+  color: #fff !important;
+  text-align: center;
+}
+
+.inputLabel {
+  font-size: 1rem !important;
+}
+
+.section-title-first {
+  margin: 20px 0 0 0 !important;
+}
+
+.section-title {
+  margin: 50px 0 0 0 !important;
+}
+
+.container {
+  margin-top: 5px !important;
+}
+
+.button-container {
+  margin-top: 50px !important;
+}
+
+.job-type {
+  margin-top: 15px !important;
+  margin-bottom: -10px !important;
+}

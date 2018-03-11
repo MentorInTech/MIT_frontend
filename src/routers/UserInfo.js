@@ -1,3 +1,13 @@
+/**
+ * DO NOT USE!
+ *
+ * This file is kept temporarily for historical purpose.
+ *
+ * THIS FILE WILL BE DELETED.
+ *
+ * For the new material-v1 code ../pages/user-info
+ */
+
 /* eslint-disable */
 
 import { Card, CardTitle } from 'material-ui/Card';

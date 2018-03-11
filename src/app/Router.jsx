@@ -3,14 +3,17 @@
  * All rights reserved.
  */
 
-import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import React from 'react';
+
 import ExampleRouting from '../pages/example-routing';
+import UserInfo from '../pages/user-info';
 
 export default () => (
   <BrowserRouter>
     <Switch>
       <Route path="/test" component={ExampleRouting} />
+      <Route path="/user-info" component={UserInfo} />
     </Switch>
   </BrowserRouter>
 );

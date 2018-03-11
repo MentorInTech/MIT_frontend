@@ -3,10 +3,6 @@
  * All rights reserved.
  */
 
-body {
-  font-family: "Roboto", sans-serif;
-}
+import GeoSuggest from './GeoSuggest';
 
-.App {
-  background-color: #e8eaf6;
-}
+export default GeoSuggest;

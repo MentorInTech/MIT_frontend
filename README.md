@@ -70,7 +70,13 @@ It is strongly recommended that you use [Atom IDE](https://ide.atom.io/) with At
 Once you installed Atom editor locally, simply run the following command:
 
 ```shell
-apm install atom-ide-ui ide-typescript ide-json linter-eslint linter-stylelint
+apm install \
+    atom-ide-ui \       # Atom IDE
+    ide-flowtype \      # Flow static typing and JS support
+    ide-json \          # JSON support
+    linter-eslint \     # ESLint support
+    linter-stylelint \  # Styleling support
+    react               # JSX syntax highlighting
 ```
 
 Open up Atom, and select "Never" for all of `linter-eslint`'s dependencies -

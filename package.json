@@ -5,6 +5,7 @@
   "dependencies": {
     "autosuggest-highlight": "^3.1.1",
     "babel-preset-react": "^6.24.1",
+    "flow-bin": "^0.66.0",
     "material-ui": "^1.0.0-beta.35",
     "material-ui-icons": "^1.0.0-beta.35",
     "material-ui-places": "^1.1.7",
@@ -24,6 +25,7 @@
     "build": "npm test && react-scripts build",
     "clean": "rm -rf node_modules build coverage",
     "test": "npm run lint && CI=true react-scripts test --env=jsdom --coverage",
+    "flow": "flow",
     "lint": "npm run lint:js && npm run lint:css",
     "lint:fix": "npm run lint:js:fix ; npm run lint:css:fix",
     "lint:js": "eslint --ext js --ext jsx src",
