@@ -32,8 +32,8 @@ class GoalSelection extends Component {
     };
   }
 
-  setMentorRole = (value) => {
-    this.setState({ [`mentorRole${this.state.currentTab}`]: value });
+  setMentorRole = (event) => {
+    this.setState({ [`mentorRole${this.state.currentTab}`]: event.target.value });
   }
 
   handleProgramChange = (event, index, value) => {
@@ -79,14 +79,16 @@ class GoalSelection extends Component {
                   <div style={{ display: 'flex', flexDirection: 'row' }} className="mentor-role">
                     <RadioButton
                         label="Mentor"
+                        value="Mentor"
                         style={{ display: 'block' }}
-                        onClick={() => this.setMentorRole('Mentor')}
+                        onClick={this.setMentorRole}
                         checked={this.state.mentorRole1 === 'Mentor'}
                     />
                     <RadioButton
                         label="Mentee"
+                        value="Mentee"
                         style={{ display: 'block' }}
-                        onClick={() => this.setMentorRole('Mentee')}
+                        onClick={this.setMentorRole}
                         checked={this.state.mentorRole1 === 'Mentee'}
                     />
                   </div>
@@ -126,14 +128,16 @@ class GoalSelection extends Component {
                   <div style={{ display: 'flex', flexDirection: 'row' }} className="mentor-role">
                     <RadioButton
                         label="Mentor"
+                        value="Mentor"
                         style={{ display: 'block' }}
-                        onClick={() => this.setMentorRole('Mentor')}
+                        onClick={this.setMentorRole}
                         checked={this.state.mentorRole2 === 'Mentor'}
                     />
                     <RadioButton
                         label="Mentee"
+                        value="Mentee"
                         style={{ display: 'block' }}
-                        onClick={() => this.setMentorRole('Mentee')}
+                        onClick={this.setMentorRole}
                         checked={this.state.mentorRole2 === 'Mentee'}
                     />
                   </div>
@@ -172,14 +176,16 @@ class GoalSelection extends Component {
                   <div style={{ display: 'flex', flexDirection: 'row' }} className="mentor-role">
                     <RadioButton
                         label="Mentor"
+                        value="Mentor"
                         style={{ display: 'block' }}
-                        onClick={() => this.setMentorRole('Mentor')}
+                        onClick={this.setMentorRole}
                         checked={this.state.mentorRole3 === 'Mentor'}
                     />
                     <RadioButton
                         label="Mentee"
+                        value="Mentee"
                         style={{ display: 'block' }}
-                        onClick={() => this.setMentorRole('Mentee')}
+                        onClick={this.setMentorRole}
                         checked={this.state.mentorRole3 === 'Mentee'}
                     />
                   </div>
