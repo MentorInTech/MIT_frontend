@@ -23,7 +23,7 @@ class ResetPassword extends Component {
     };
   }
 
-  onChange() {
+  onChange = () => {
     /**
      * check the password strongness:
      * Minimum eight characters, at least one uppercase letter, one lowercase letter,
@@ -56,7 +56,7 @@ class ResetPassword extends Component {
    * Update input value to state.password.
    * When the inputvalue is empty, show the error message.
    */
-  passwordOnChange(event) {
+  passwordOnChange = (event) => {
     this.setState({ password: event.target.value });
     if (this.state.password) {
       this.setState({ passwordErrorText: '' });
@@ -67,7 +67,7 @@ class ResetPassword extends Component {
    * Update input value to state.confirmPassword.
    * When the inputvalue is empty, show the error message.
    */
-  confirmPasswordOnChange(event) {
+  confirmPasswordOnChange = (event) => {
     this.setState({ confirmPassword: event.target.value });
     if (this.state.confirmPassword) {
       this.setState({ confirmPasswordErrorText: '' });
@@ -89,12 +89,7 @@ class ResetPassword extends Component {
                 underlineFocusStyle={styles.textField.underline}
                 value={this.state.password}
                 errorText={this.state.passwordErrorText}
-                /* eslint-disable react/jsx-no-bind */
-                // TODO: We should figure out a way to avoid using `bind`; see the following for why:
-                //       https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
-                onChange={this.passwordOnChange.bind(this)}
-                /* eslint-enable */
-
+                onChange={this.passwordOnChange}
             />
             <TextField
                 hintText="Confirm New Password"
@@ -104,11 +99,7 @@ class ResetPassword extends Component {
                 underlineFocusStyle={styles.textField.underline}
                 value={this.state.confirmPassword}
                 errorText={this.state.confirmPasswordErrorText}
-                /* eslint-disable react/jsx-no-bind */
-                // TODO: We should figure out a way to avoid using `bind`; see the following for why:
-                //       https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
-                onChange={this.confirmPasswordOnChange.bind(this)}
-                /* eslint-enable */
+                onChange={this.confirmPasswordOnChange}
             />
             <br />
             <br />
@@ -116,11 +107,7 @@ class ResetPassword extends Component {
                 label="Change Password"
                 labelColor="#ffffff"
                 backgroundColor={styles.button.color}
-                /* eslint-disable react/jsx-no-bind */
-                // TODO: We should figure out a way to avoid using `bind`; see the following for why:
-                //       https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
-                onClick={this.onChange.bind(this)}
-                /* eslint-enable */
+                onClick={this.onChange}
             />
             <hr className="divider" />
             <Link to="/login">

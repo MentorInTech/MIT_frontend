@@ -32,8 +32,8 @@ class GoalSelection extends Component {
     };
   }
 
-  setMentorRole = (value) => {
-    this.setState({ [`mentorRole${this.state.currentTab}`]: value });
+  setMentorRole = (event) => {
+    this.setState({ [`mentorRole${this.state.currentTab}`]: event.target.value });
   }
 
   handleProgramChange = (event, index, value) => {
@@ -49,6 +49,10 @@ class GoalSelection extends Component {
       currentTab: value
     });
   };
+
+  componentDidUpdate() {
+    console.log(this.state);
+  }
 
   render() {
     return (
@@ -75,18 +79,16 @@ class GoalSelection extends Component {
                   <div style={{ display: 'flex', flexDirection: 'row' }} className="mentor-role">
                     <RadioButton
                         label="Mentor"
+                        value="Mentor"
                         style={{ display: 'block' }}
-                        /* eslint-disable react/jsx-no-bind */
-                        // TODO: We should figure out a way to avoid using `bind`; see the following for why:
-                        //       https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
-                        onClick={this.setMentorRole.bind(this, 'Mentor')}
+                        onClick={this.setMentorRole}
                         checked={this.state.mentorRole1 === 'Mentor'}
                     />
                     <RadioButton
                         label="Mentee"
+                        value="Mentee"
                         style={{ display: 'block' }}
-                        onClick={this.setMentorRole.bind(this, 'Mentee')}
-                        /* eslint-enable */
+                        onClick={this.setMentorRole}
                         checked={this.state.mentorRole1 === 'Mentee'}
                     />
                   </div>
@@ -126,18 +128,16 @@ class GoalSelection extends Component {
                   <div style={{ display: 'flex', flexDirection: 'row' }} className="mentor-role">
                     <RadioButton
                         label="Mentor"
+                        value="Mentor"
                         style={{ display: 'block' }}
-                        /* eslint-disable react/jsx-no-bind */
-                        // TODO: We should figure out a way to avoid using `bind`; see the following for why:
-                        //       https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
-                        onClick={this.setMentorRole.bind(this, 'Mentor')}
+                        onClick={this.setMentorRole}
                         checked={this.state.mentorRole2 === 'Mentor'}
                     />
                     <RadioButton
                         label="Mentee"
+                        value="Mentee"
                         style={{ display: 'block' }}
-                        onClick={this.setMentorRole.bind(this, 'Mentee')}
-                        /* eslint-enable */
+                        onClick={this.setMentorRole}
                         checked={this.state.mentorRole2 === 'Mentee'}
                     />
                   </div>
@@ -176,22 +176,16 @@ class GoalSelection extends Component {
                   <div style={{ display: 'flex', flexDirection: 'row' }} className="mentor-role">
                     <RadioButton
                         label="Mentor"
+                        value="Mentor"
                         style={{ display: 'block' }}
-                        /* eslint-disable react/jsx-no-bind */
-                        // TODO: We should figure out a way to avoid using `bind`; see the following for why:
-                        //       https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
-                        onClick={this.setMentorRole.bind(this, 'Mentor')}
-                        /* eslint-enable */
+                        onClick={this.setMentorRole}
                         checked={this.state.mentorRole3 === 'Mentor'}
                     />
                     <RadioButton
                         label="Mentee"
+                        value="Mentee"
                         style={{ display: 'block' }}
-                        /* eslint-disable react/jsx-no-bind */
-                        // TODO: We should figure out a way to avoid using `bind`; see the following for why:
-                        //       https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
-                        onClick={this.setMentorRole.bind(this, 'Mentee')}
-                        /* eslint-enable */
+                        onClick={this.setMentorRole}
                         checked={this.state.mentorRole3 === 'Mentee'}
                     />
                   </div>

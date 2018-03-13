@@ -27,7 +27,7 @@ class ForgetPassword extends Component {
   }
 
 
-  onChange() {
+  onChange = () => {
     if (this.state.email) {
       this.setState({ emailErrorText: 'This field is required' });
     } else {
@@ -60,11 +60,7 @@ class ForgetPassword extends Component {
                 underlineFocusStyle={styles.textField.underline}
                 type="email"
                 errorText={this.state.emailErrorText}
-                /* eslint-disable react/jsx-no-bind */
-                // TODO: We should figure out a way to avoid using `bind`; see the following for why:
-                //       https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
-                onChange={this.emailOnChange.bind(this)}
-                /* eslint-enable */
+                onChange={this.emailOnChange}
             />
             <br />
             <br />
@@ -77,11 +73,7 @@ class ForgetPassword extends Component {
                   label="Reset Password"
                   labelColor="#ffffff"
                   backgroundColor={styles.button.color}
-                  /* eslint-disable react/jsx-no-bind */
-                  // TODO: We should figure out a way to avoid using `bind`; see the following for why:
-                  //       https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
-                  onClick={this.onChange.bind(this)}
-                  /* eslint-enable */
+                  onClick={this.onChange}
               />
             </Link>
             <hr className="divider" />
