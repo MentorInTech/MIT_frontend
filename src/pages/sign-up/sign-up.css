@@ -1,0 +1,26 @@
+#form-title {
+  margin-bottom: 3.5rem;
+  text-align: center;
+}
+
+#form-content {
+  background-color: white;
+  box-shadow: 0 2px 4px 0 rgba(217, 217, 217, 0.5);
+  padding: 1.5rem 2.5rem;
+  width: 38rem;
+}
+
+.input, .button {
+  font-size: 1rem !important;
+  height: 3.2rem;
+  padding: 0 1rem;
+}
+
+.input:focus {
+  border: solid 1px rgb(82, 213, 156);
+  box-shadow: 0 0 3px rgba(82, 213, 156, 0.8);
+}
+
+.button {
+  width: 100%;
+}
