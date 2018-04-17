@@ -1,0 +1,11 @@
+.navbar {
+  height: 4rem;
+}
+
+.navbar-item {
+  margin: 0 0.8rem;
+}
+
+a.navbar-item:hover {
+  color: rgb(74, 74, 74);
+}
