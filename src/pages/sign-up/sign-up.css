@@ -24,3 +24,7 @@
 .button {
   width: 100%;
 }
+
+.buton:hover {
+  background-color: #52cc96;
+}

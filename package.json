@@ -2,12 +2,14 @@
   "name": "MentorInTech",
   "version": "0.1.0",
   "private": true,
+  "typings": "./types/index.d.ts",
   "dependencies": {
     "bulma": "^0.7.0",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-router-dom": "^4.2.2",
-    "react-scripts-ts": "2.15.1"
+    "react-scripts-ts": "2.15.1",
+    "validator": "^9.4.1"
   },
   "scripts": {
     "start": "react-scripts-ts start",
@@ -21,6 +23,7 @@
     "@types/react": "^16.3.10",
     "@types/react-dom": "^16.0.5",
     "@types/react-router-dom": "^4.2.6",
+    "@types/validator": "^9.4.0",
     "typescript": "^2.8.1"
   }
 }
