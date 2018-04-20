@@ -4,6 +4,7 @@ node_js:
 script:
         - npm install
         - npm test
+        - npm run build
 notifications:
           slack:
                       secure: ATy7Ck5EPHaeDA/+5FzarHEdNByaMdzxELfAJWGIPJ8RErnmip0vDooTqwHMhO4T41rh9TokNJkHSZ6QFwusnf5Am4N4cRMDQcCkUJ3eCOLi7FPjPv8/JX03QnlCBa7t/fCkdeFq+WNrfIXXwSDNXGWErhU7yI+eZm/64Pi/XolaF0wXYG4OFxxLKBUrQCgwuQXd15EZipIO0G10Sg/USQrEB2oke5XPR8AZh9h6LTigHep8hVE+hwW8wnLFIYuBDIafRWQcSPiPTDa+t5K11tC9pJmJTehd2Xh9BxKh6+/fhw5K1VM89iHZs4pOa1J41KgO6zqdlxKWyYC9OboYn+P6mrE//rVE2CzSuhClhEmFQG8bsPVTDdYJiRaxUj6wehhUZVBpzVjdZGryQp0LwC4k2w2hzFXvXM7CyXyvMToXcA1YUAC+udlKTwdEcDu5TUWB37PUc9vmdfcTImrOo++wRcYobiGLb6Kvp1k7ALLUIePQGjRxruWXCe8hLlZk0n1ctmfBzKgEs+KetgzF6vhDXZ3FqpG3B7dtpK9cemNMy09dEEly4lQ9+COsZrd4Rn8mjd2MNplzAu45V3PacCBxAUY/TxwbC9Gk62vWBbvwOaGJUgzVOHBI2NguuCARVagP0ax7YSDJUm3xhk4fIrh4MfFd9nNPF32iRa73TOA=
