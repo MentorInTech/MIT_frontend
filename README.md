@@ -13,6 +13,7 @@ In the project directory, you can run:
 Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
+
 ### Test Scripts
 
 - `npm test`: main script to test your code. You should **ALWAYS** run this script and make sure everything passes before you submit any pull request
@@ -34,6 +35,7 @@ Most editors support real-time linting, and this section lists quick setup guide
 for some popular editors.
 
 Feel free to add to the list if your favourite editor isn't listed in this section.
+
 
 ### Setting up for Atom
 
