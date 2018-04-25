@@ -2,7 +2,6 @@
   "name": "MentorInTech",
   "version": "0.1.0",
   "private": true,
-  "typings": "./types/index.d.ts",
   "dependencies": {
     "bulma": "^0.7.0",
     "react": "^16.3.1",
@@ -14,7 +13,7 @@
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test --env=jsdom",
+    "test": "CI=true react-scripts-ts test --env=jsdom --coverage",
     "eject": "react-scripts-ts eject"
   },
   "devDependencies": {

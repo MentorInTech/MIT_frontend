@@ -23,6 +23,8 @@ class Page extends React.Component<PageProps, any> {
           <section className="section">
             {this.props.children}
           </section>
+          {/* end of page contents */}
+
         </div>
 
         <Footer />

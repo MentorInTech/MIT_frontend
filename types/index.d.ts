@@ -4,20 +4,25 @@ export interface PageProps {
   children: any
 }
 
-export interface SignUpStates {
+export interface SignUpState {
   awaitServer: boolean,
   confirm: string,
+  confirmBlurredOnce: boolean,
   confirmMessage: string,
   confirmValid: boolean,
   email: string,
+  emailBlurredOnce: boolean,
   emailMessage: string,
   emailValid: boolean,
   firstName: string,
+  firstNameBlurredOnce: boolean,
   firstNameMessage: string,
   firstNameValid: boolean,
   lastName: string,
+  lastNameBlurredOnce: boolean,
   lastNameMessage: string,
   lastNameValid: boolean,
+  passwordBlurredOnce: boolean,
   password: string,
   passwordMessage: string,
   passwordValid: boolean,

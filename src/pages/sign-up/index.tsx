@@ -1,12 +1,14 @@
-import { ChangeEvent } from 'react';
 import * as React from 'react';
 
 import './sign-up.css';
-import { initialState, validate } from './sign-up';
-import { SignUpStates } from '../../../types';
-import Page from '../../common/page';
+import { initialState } from './sign-up';
+import Page from '../../common/page'
+import strings from '../../strings';
+import validate from '../../common/utils/validate';
 
-class SignUp extends React.Component<any, SignUpStates> {
+import { SignUpState } from '../../../types';
+
+class SignUp extends React.Component<any, SignUpState> {
   constructor(props: any) {
     super(props);
     this.state = initialState;
@@ -23,9 +25,10 @@ class SignUp extends React.Component<any, SignUpStates> {
                 <input
                     className="input"
                     disabled={this.state.awaitServer}
-                    name="firstName"
+                    onChange={this.handleChange}
                     onBlur={this.handleFocusOut}
-                    placeholder="First Name"
+                    name="firstName"
+                    placeholder={strings.forms.TEXT_FIRST_NAME}
                     type="text"
                 />
                 <p className="help is-danger">{this.state.firstNameMessage}</p>
@@ -35,9 +38,10 @@ class SignUp extends React.Component<any, SignUpStates> {
                 <input
                     className="input"
                     disabled={this.state.awaitServer}
-                    name="lastName"
+                    onChange={this.handleChange}
                     onBlur={this.handleFocusOut}
-                    placeholder="Last Name"
+                    name="lastName"
+                    placeholder={strings.forms.TEXT_LAST_NAME}
                     type="text"
                 />
                 <p className="help is-danger">{this.state.lastNameMessage}</p>
@@ -47,9 +51,10 @@ class SignUp extends React.Component<any, SignUpStates> {
                 <input
                     className="input"
                     disabled={this.state.awaitServer}
-                    name="email"
+                    onChange={this.handleChange}
                     onBlur={this.handleFocusOut}
-                    placeholder="E-mail"
+                    name="email"
+                    placeholder={strings.forms.TEXT_EMAIL}
                     type="text"
                 />
                 <p className="help is-danger">{this.state.emailMessage}</p>
@@ -59,9 +64,10 @@ class SignUp extends React.Component<any, SignUpStates> {
                 <input
                     className="input"
                     disabled={this.state.awaitServer}
-                    name="password"
+                    onChange={this.handleChange}
                     onBlur={this.handleFocusOut}
-                    placeholder="Password"
+                    name="password"
+                    placeholder={strings.forms.TEXT_PASSWORD}
                     type="password"
                 />
                 <p className="help is-danger">{this.state.passwordMessage}</p>
@@ -71,9 +77,10 @@ class SignUp extends React.Component<any, SignUpStates> {
                 <input
                     className="input"
                     disabled={this.state.awaitServer}
-                    name="confirm"
+                    onChange={this.handleChange}
                     onBlur={this.handleFocusOut}
-                    placeholder="Confirm password"
+                    name="confirm"
+                    placeholder={strings.forms.TEXT_CONFIRM_PASSWORD}
                     type="password"
                 />
                 <p className="help is-danger">{this.state.confirmMessage}</p>
@@ -85,7 +92,7 @@ class SignUp extends React.Component<any, SignUpStates> {
                     disabled={!this.state.readyForSubmit || this.state.awaitServer}
                     onClick={this.handleSubmit}
                     type="submit">
-                  Create new account
+                  {strings.forms.TEXT_CREATE_NEW_ACCOUNT}
                 </button>
               </div>
             </div>
@@ -103,22 +110,58 @@ class SignUp extends React.Component<any, SignUpStates> {
   /**
    * Handles focus out events for form input elements.
    *
-   * @param event The objectt describing this focus out event
+   * @param event The object describing this focus out event
    */
-  private handleFocusOut = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    const { isValid, message } = validate(
-        name, value,
-        name === 'confirm' ? this.state.password : ''
-    );
+  private handleFocusOut = (event: React.FocusEvent<HTMLInputElement>) => {
+    const target = event.target;
+    const blurredOnceStateName = `${target.name}BlurredOnce`;
+    const blurredOnce = this.state[blurredOnceStateName]
+    if (!blurredOnce) {
+      // Don't modify state if not necessary
+      this.setState(prevState =>
+          ({ ...prevState, [blurredOnceStateName]: true }),
+          () => this.updateStateValue(target)
+      );
+    }
+  };
 
-    event.target.classList.toggle("is-danger", !isValid);
+  /**
+   * Handles change event for input elements
+   *
+   * @param event The object describing this focus out event
+   */
+  private handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const target = event.target;
+    this.updateStateValue(target);
+  };
+
+  /**
+   * Update state value for the input element.
+   *
+   * We use `elementNameBlurredOnce` for UX reasons to make sure we
+   * show error message onChange only after the user has entered the
+   * input once. This will prevent the form from showing error message
+   * as the user types.
+   */
+  private updateStateValue = (target: HTMLInputElement) => {
+    const { name, value } = target;
+    const blurredOnce = this.state[`${name}BlurredOnce`];
+    const validity = validate(name, value, this.state);
+
+    if (blurredOnce) {
+      // Only show as red if user has visited this input before
+      target.classList.toggle("is-danger", !validity.isValid);
+    } else {
+      // Don't dipslay the error message
+      validity.message = '';
+    }
+
     this.setState(prevState =>
         ({
           ...prevState,
           [name]: value,
-          [`${name}Message`]: message,
-          [`${name}Valid`]: isValid,
+          [`${name}Message`]: validity.message,
+          [`${name}Valid`]: validity.isValid
         }),
         this.updateReadyForSubmit
     );
@@ -127,15 +170,13 @@ class SignUp extends React.Component<any, SignUpStates> {
   /**
    * Check for all form control to see if the form is ready for submit.
    */
-  private updateReadyForSubmit = () => {
-    this.setState({
-      readyForSubmit: this.state.confirmValid
-          && this.state.emailValid
-          && this.state.firstNameValid
-          && this.state.lastNameValid
-          && this.state.passwordValid
-    })
-  };
+  private updateReadyForSubmit = () => this.setState({
+    readyForSubmit: this.state.confirmValid
+        && this.state.emailValid
+        && this.state.firstNameValid
+        && this.state.lastNameValid
+        && this.state.passwordValid
+  });
 }
 
 export default SignUp;
