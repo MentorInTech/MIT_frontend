@@ -1,0 +1,9 @@
+#page {
+  background-color: rgb(247, 247, 247);
+  height: 100vh;
+}
+
+#content-wrapper {
+  margin-bottom: 3rem;
+  min-height: calc(100vh - 12rem);
+}
