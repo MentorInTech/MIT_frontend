@@ -1,9 +1,9 @@
-import { SignUpState } from '../../../types';
+import { SignUpStates } from '../../../types';
 
 /**
  * Initial state of the sign up page
  */
-export const initialState: SignUpState = {
+export const initialState: SignUpStates = {
   awaitServer: false,
   confirm: '',
   confirmBlurredOnce: false,

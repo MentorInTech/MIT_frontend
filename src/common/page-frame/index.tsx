@@ -3,12 +3,12 @@ import * as React from 'react';
 import Navbar from '../navbar';
 import Footer from '../footer';
 
-import { PageProps } from '../../../types';
+import { PageFrameProps } from '../../../types';
 
-import './page.css';
+import './page-frame.css';
 
-class Page extends React.Component<PageProps, any> {
-  constructor(props: PageProps) {
+class PageFrame extends React.Component<PageFrameProps, any> {
+  constructor(props: PageFrameProps) {
     super(props);
     document.title = `${props.title} | Mentor In Tech`;
   }
@@ -17,7 +17,7 @@ class Page extends React.Component<PageProps, any> {
     return (
       <div id="page">
         <div id="content-wrapper">
-          <Navbar />
+          <Navbar path={this.props.path} />
 
           {/* page contents */}
           <section className="section">
@@ -33,4 +33,4 @@ class Page extends React.Component<PageProps, any> {
   }
 }
 
-export default Page;
+export default PageFrame;

@@ -1,15 +1,15 @@
 import * as React from 'react';
 
-import './sign-up.css';
-import { initialState } from './sign-up';
+import './sign-in.css';
+import { initialState } from './sign-in';
 import PageFrame from '../../common/page-frame'
 import InputField from '../../common/forms/input-field'
 import strings from '../../strings';
 import validate from '../../common/utils/validate';
 
-import { SignUpStates } from '../../../types';
+import { SignInStates } from '../../../types';
 
-class SignUp extends React.Component<any, SignUpStates> {
+class SignIn extends React.Component<any, SignInStates> {
   constructor(props: any) {
     super(props);
     this.state = initialState;
@@ -17,33 +17,11 @@ class SignUp extends React.Component<any, SignUpStates> {
 
   public render() {
     return (
-      <PageFrame title="Create new account" path="sign-up">
+      <PageFrame title="Log in" path="sign-in">
         <div className="container">
-          <div id="sign-up-form-title" className="title">Create your account</div>
+          <div id="sign-in-form-title" className="title">Welcome to Mentor In Tech</div>
           <div className="columns is-centered">
-            <div id="sign-up-form-content" className="columns is-multiline is-centered">
-              <InputField
-                  disabled={this.state.awaitServer}
-                  helpMessage={this.state.firstNameMessage}
-                  layoutClassName="column is-6 is-marginless"
-                  name="firstName"
-                  onBlur={this.handleFocusOut}
-                  onChange={this.handleChange}
-                  placeholder={strings.forms.TEXT_FIRST_NAME}
-                  type="text"
-              />
-
-              <InputField
-                  disabled={this.state.awaitServer}
-                  helpMessage={this.state.lastNameMessage}
-                  layoutClassName="column is-6 is-marginless"
-                  name="lastName"
-                  onBlur={this.handleFocusOut}
-                  onChange={this.handleChange}
-                  placeholder={strings.forms.TEXT_LAST_NAME}
-                  type="text"
-              />
-
+            <div id="sign-in-form-content" className="columns is-multiline is-centered">
               <InputField
                   disabled={this.state.awaitServer}
                   helpMessage={this.state.emailMessage}
@@ -66,27 +44,20 @@ class SignUp extends React.Component<any, SignUpStates> {
                   type="password"
               />
 
-              <InputField
-                  disabled={this.state.awaitServer}
-                  helpMessage={this.state.confirmMessage}
-                  layoutClassName="column is-12 is-marginless"
-                  name="confirm"
-                  onBlur={this.handleFocusOut}
-                  onChange={this.handleChange}
-                  placeholder={strings.forms.TEXT_CONFIRM_PASSWORD}
-                  type="password"
-              />
-
               <div className="column is-12 field is-marginless">
                 <button
                     className="button is-primary"
                     disabled={!this.state.readyForSubmit || this.state.awaitServer}
                     onClick={this.handleSubmit}
                     type="submit">
-                  {strings.forms.TEXT_CREATE_NEW_ACCOUNT}
+                  {strings.forms.TEXT_LOG_IN}
                 </button>
               </div>
             </div>
+          </div>
+
+          <div id="forget-password-link" className="has-text-centered">
+            <a className="link has-text-primary">Forgot your password?</a>
           </div>
         </div>
       </PageFrame>
@@ -162,12 +133,8 @@ class SignUp extends React.Component<any, SignUpStates> {
    * Check for all form control to see if the form is ready for submit.
    */
   private updateReadyForSubmit = () => this.setState({
-    readyForSubmit: this.state.confirmValid
-        && this.state.emailValid
-        && this.state.firstNameValid
-        && this.state.lastNameValid
-        && this.state.passwordValid
+    readyForSubmit: this.state.emailValid && this.state.passwordValid
   });
 }
 
-export default SignUp;
+export default SignIn;

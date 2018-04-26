@@ -1,17 +1,17 @@
 import * as React from 'react';
 
-import Page from '../../common/page';
+import PageFrame from '../../common/page-frame';
 
 import './landing.css';
 
 class Landing extends React.Component {
   public render() {
     return (
-      <Page title="Create new account">
+      <PageFrame title="Create new account">
         <div className="container">
           Welcome!
         </div>
-      </Page>
+      </PageFrame>
     );
   }
 }

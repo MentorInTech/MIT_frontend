@@ -12,6 +12,7 @@ const forms: I18nGroup = {
   TEXT_EMAIL: 'E-mail',
   TEXT_FIRST_NAME: 'First name',
   TEXT_LAST_NAME: 'Last name',
+  TEXT_LOG_IN: 'Log in',
   TEXT_PASSWORD: 'Password'
 };
 

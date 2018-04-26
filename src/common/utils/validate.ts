@@ -1,8 +1,6 @@
 import * as validator from 'validator';
 import strings from '../../strings';
 
-import { SignUpState } from '../../../types';
-
 /**
  * Validate a form target and its value.
  *
@@ -10,7 +8,7 @@ import { SignUpState } from '../../../types';
  * @param value The value of the target to validate
  * @param state The current state
  */
-export default function validate(name: string, value: string, state: SignUpState): { isValid: boolean, message: string} {
+export default function validate(name: string, value: string, state: any): { isValid: boolean, message: string} {
   let isValid = false;
   let message = '';
 
