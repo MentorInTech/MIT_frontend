@@ -1,0 +1,15 @@
+.input {
+  font-size: 1rem;
+  height: 3.2rem;
+  padding: 0 1rem;
+}
+
+.input:focus {
+  border: solid 1px rgb(82, 213, 156);
+  box-shadow: 0 0 3px rgba(82, 213, 156, 0.8);
+}
+
+.input:focus.is-danger {
+  border: solid 1px rgb(255, 56, 96);
+  box-shadow: 0 0 3px rgb(255, 56, 96);
+}
