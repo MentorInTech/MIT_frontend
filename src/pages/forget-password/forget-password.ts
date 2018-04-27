@@ -1,4 +1,4 @@
-import { SignInStates } from '../../../types';
+import { ForgetPasswordStates } from '../../../types';
 
 /**
  * Sign-in - requests authentication token from server.
@@ -7,17 +7,17 @@ import { SignInStates } from '../../../types';
  * @param password User's password
  * @return A Promise that resolves if the request was sucessful; rejects with reason if failed
  */
-export function signIn(email: string, password: string): Promise<string> {
+export function sendResetPasswordEmail(email: string): Promise<string> {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const jsonData = { email, password };
+      const jsonData = { email };
       console.group();
-      console.log('Sending sign-in request');
+      console.log('Sending reset password request');
       console.log(jsonData);
       console.groupEnd();
 
-      console.log('Faking failure');
-      reject('Authentication failed');
+      console.log('Faking success');
+      resolve('Email sent');
     }, 1000);
   });
 }
@@ -25,16 +25,11 @@ export function signIn(email: string, password: string): Promise<string> {
 /**
  * Initial state of the sign up page
  */
-export const initialState: SignInStates = {
+export const initialState: ForgetPasswordStates = {
   awaitServer: false,
   email: '',
   emailBlurredOnce: false,
   emailMessage: '',
   emailValid: false,
-  password: '',
-  passwordBlurredOnce: false,
-  passwordMessage: '',
-  passwordValid: false,
-  readyForSubmit: false,
-  signInFailed: false
+  readyForSubmit: false
 };

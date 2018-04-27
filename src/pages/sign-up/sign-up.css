@@ -1,16 +1,5 @@
-#sign-up-form-title {
-  margin-bottom: 3.5rem;
-  text-align: center;
-}
-
-#sign-up-form-content {
-  background-color: white;
-  box-shadow: 0 2px 4px 0 rgba(217, 217, 217, 0.5);
-  padding: 1.5rem 2.5rem;
-  max-width: 38rem;
-}
-
 #sign-up-agreement {
+  margin: 0.5rem;
   height: 0;
 }
 

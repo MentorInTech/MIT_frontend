@@ -16,27 +16,27 @@ export default function validate(name: string, value: string, state: any): { isV
     case 'confirm':
       if (value) {
         isValid = state.passwordValid && validator.equals(value, state.password);
-        message = isValid ? '' : strings.forms.ERROR_PASSWORD_MISMATCH;
+        message = isValid ? '' : strings.errors.PASSWORDS_MUST_MATCH;
       } else {
         isValid = !validator.isEmpty(value);
-        message = isValid ? '' : strings.forms.ERROR_PASSWORD_MISSING;
+        message = isValid ? '' : strings.errors.PASSWORD_MISSING;
       }
       break;
     case 'email':
       isValid = validator.isEmail(value);
-      message = isValid ? '' : strings.forms.ERROR_EMAIL_INVALID;
+      message = isValid ? '' : strings.errors.EMAIL_INVALID;
       break;
     case 'firstName':
       isValid = !validator.isEmpty(value);
-      message = isValid ? '' : strings.forms.ERROR_FIRST_NAME_MISSING;
+      message = isValid ? '' : strings.errors.FIRST_NAME_MISSING;
       break;
     case 'lastName':
       isValid = !validator.isEmpty(value);
-      message = isValid ? '' : strings.forms.ERROR_LAST_NAME_MISSING;
+      message = isValid ? '' : strings.errors.LAST_NAME_MISSING;
       break;
     case 'password':
       isValid = validator.isLength(value, { min: 8, max: 64 });
-      message = isValid ? '' : strings.forms.ERROR_PASSWORD_LENGTH;
+      message = isValid ? '' : strings.errors.PASSWORD_LENGTH_INVALID;
       break;
   }
 

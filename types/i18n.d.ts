@@ -1,28 +1,37 @@
 export default interface I18n {
-  forms: Forms,
-  general: General
+  errors: Errors,
+  questions: Questions,
+  texts: Texts
 }
 
-export interface Forms extends I18nGroup {
-  ERROR_EMAIL_INVALID: string,
-  ERROR_FIRST_NAME_MISSING: string,
-  ERROR_LAST_NAME_MISSING: string,
-  ERROR_PASSWORD_INCORRECT: string,
-  ERROR_PASSWORD_LENGTH: string,
-  ERROR_PASSWORD_MISMATCH: string,
-  ERROR_PASSWORD_MISSING: string,
-  QUESTION_FORGOT_PASSWORD: string,
-  TEXT_CONFIRM_PASSWORD: string,
-  TEXT_CREATE_NEW_ACCOUNT: string,
-  TEXT_EMAIL: string,
-  TEXT_FIRST_NAME: string,
-  TEXT_LAST_NAME: string,
-  TEXT_LOG_IN: string,
-  TEXT_PASSWORD: string
+export interface Errors extends I18nGroup {
+  EMAIL_INVALID: string,
+  FIRST_NAME_MISSING: string,
+  LAST_NAME_MISSING: string,
+  PASSWORDS_MUST_MATCH: string,
+  PASSWORD_INCORRECT: string,
+  PASSWORD_LENGTH_INVALID: string,
+  PASSWORD_MISSING: string
 }
 
-export interface General extends I18nGroup {
-  TEXT_AGREEMENT_STATEMENT: string
+export interface Texts extends I18nGroup {
+  AGREEMENT_STATEMENT: string,
+  CONFIRM_PASSWORD: string,
+  CREATE_NEW_ACCOUNT: string,
+  EMAIL: string,
+  FIRST_NAME: string,
+  FORGET_PASSWORD: string,
+  FORGOT_PASSWORD_INSTRUCTIONS: string,
+  LAST_NAME: string,
+  LOG_IN: string,
+  PASSWORD: string,
+  RESET_PASSWORD: string,
+  WELCOME_TO_MIT: string
+}
+
+export interface Questions extends I18nGroup {
+  FORGOT_PASSWORD: string,
+  FORGOT_YOUR_PASSWORD: string,
 }
 
 interface I18nGroup {}

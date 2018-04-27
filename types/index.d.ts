@@ -1,9 +1,15 @@
 import * as React from 'react';
 
-export interface PageFrameProps {
+export interface PageFrameGenericProps {
   children: any,
-  title: string,
-  path?: string
+  path?: string,
+  title: string
+}
+
+export interface PageFrameSingleFormProps extends PageFrameGenericProps {
+  additionalInfo?: any,
+  formInstructions?: string,
+  formTitle?: string
 }
 
 export interface NavbarProps {
@@ -44,8 +50,8 @@ export interface SignUpStates {
   lastNameBlurredOnce: boolean,
   lastNameMessage: string,
   lastNameValid: boolean,
-  passwordBlurredOnce: boolean,
   password: string,
+  passwordBlurredOnce: boolean,
   passwordMessage: string,
   passwordValid: boolean,
   readyForSubmit: boolean
@@ -57,10 +63,32 @@ export interface SignInStates {
   emailBlurredOnce: boolean,
   emailMessage: string,
   emailValid: boolean,
-  passwordBlurredOnce: boolean,
   password: string,
+  passwordBlurredOnce: boolean,
   passwordMessage: string,
   passwordValid: boolean,
   readyForSubmit: boolean,
   signInFailed: boolean
+}
+
+export interface ForgetPasswordStates {
+  awaitServer: boolean,
+  email: string,
+  emailBlurredOnce: boolean,
+  emailMessage: string,
+  emailValid: boolean,
+  readyForSubmit: boolean
+}
+
+export interface ResetPasswordStates {
+  awaitServer: boolean,
+  confirm: string,
+  confirmBlurredOnce: boolean,
+  confirmMessage: string,
+  confirmValid: boolean,
+  password: string,
+  passwordBlurredOnce: boolean,
+  passwordMessage: string,
+  passwordValid: boolean,
+  readyForSubmit: boolean
 }

@@ -1,15 +1,15 @@
 import * as React from 'react';
 
-import './sign-up.css';
-import { initialState, signUp } from './sign-up';
+import './forget-password.css';
+import { initialState, sendResetPasswordEmail } from './forget-password';
 import InputField from '../../common/forms/input-field'
-import PageFrameSingleForm from '../../common/page-frames/single-form'
+import PageFrameSingleForm from '../../common/page-frames/single-form';
 import strings from '../../strings';
 import validate from '../../common/utils/validate';
 
-import { SignUpStates } from '../../../types';
+import { ForgetPasswordStates } from '../../../types';
 
-class SignUp extends React.Component<any, SignUpStates> {
+class ForgetPassword extends React.Component<any, ForgetPasswordStates> {
   constructor(props: any) {
     super(props);
     this.state = initialState;
@@ -26,32 +26,11 @@ class SignUp extends React.Component<any, SignUpStates> {
     return (
       <PageFrameSingleForm
           additionalInfo={formAdditionalInfo}
-          formTitle={strings.texts.CREATE_NEW_ACCOUNT}
-          path="sign-up"
-          title={strings.texts.CREATE_NEW_ACCOUNT}
+          formInstructions={strings.texts.FORGOT_PASSWORD_INSTRUCTIONS}
+          formTitle={strings.questions.FORGOT_PASSWORD}
+          path="sign-in"
+          title={strings.texts.FORGET_PASSWORD}
       >
-        <InputField
-            disabled={this.state.awaitServer}
-            helpMessage={this.state.firstNameMessage}
-            layoutClassName="column is-6 is-marginless"
-            name="firstName"
-            onBlur={this.handleFocusOut}
-            onChange={this.handleChange}
-            placeholder={strings.texts.FIRST_NAME}
-            type="text"
-        />
-
-        <InputField
-            disabled={this.state.awaitServer}
-            helpMessage={this.state.lastNameMessage}
-            layoutClassName="column is-6 is-marginless"
-            name="lastName"
-            onBlur={this.handleFocusOut}
-            onChange={this.handleChange}
-            placeholder={strings.texts.LAST_NAME}
-            type="text"
-        />
-
         <InputField
             disabled={this.state.awaitServer}
             helpMessage={this.state.emailMessage}
@@ -63,37 +42,14 @@ class SignUp extends React.Component<any, SignUpStates> {
             type="text"
         />
 
-        <InputField
-            disabled={this.state.awaitServer}
-            helpMessage={this.state.passwordMessage}
-            layoutClassName="column is-12 is-marginless"
-            name="password"
-            onBlur={this.handleFocusOut}
-            onChange={this.handleChange}
-            placeholder={strings.texts.PASSWORD}
-            type="password"
-        />
-
-        <InputField
-            disabled={this.state.awaitServer}
-            helpMessage={this.state.confirmMessage}
-            layoutClassName="column is-12 is-marginless"
-            name="confirm"
-            onBlur={this.handleFocusOut}
-            onChange={this.handleChange}
-            placeholder={strings.texts.CONFIRM_PASSWORD}
-            type="password"
-        />
-
         <div className="column is-12 field is-marginless">
           <button
               className="button is-primary"
               disabled={!this.state.readyForSubmit || this.state.awaitServer}
               onClick={this.handleSubmit}
               type="submit">
-            {strings.texts.CREATE_NEW_ACCOUNT}
+            {strings.texts.RESET_PASSWORD}
           </button>
-          <p id="sign-up-agreement" className="help has-text-grey">{strings.texts.AGREEMENT_STATEMENT}</p>
         </div>
       </PageFrameSingleForm>
     );
@@ -104,13 +60,14 @@ class SignUp extends React.Component<any, SignUpStates> {
    */
   private handleSubmit = () => {
     this.setState({ awaitServer: true }, () => {
-      const { firstName, lastName, email, password } = this.state;
+      const { email } = this.state;
 
-      signUp(firstName, lastName, email, password)
-          .then()
-          .catch(err => {
-            console.error(err);
-            this.setState({ awaitServer: false });
+      sendResetPasswordEmail(email)
+          .then(message => {
+            console.log(`Reset email sent with message ${message}`);
+            this.setState({
+              awaitServer: false,
+            });
           });
     });
   };
@@ -156,10 +113,7 @@ class SignUp extends React.Component<any, SignUpStates> {
     const blurredOnce = this.state[`${name}BlurredOnce`];
     const validity = validate(name, value, this.state);
 
-    if (blurredOnce) {
-      // Only show as red if user has visited this input before
-      target.classList.toggle("is-danger", !validity.isValid);
-    } else {
+    if (!blurredOnce) {
       // Don't dipslay the error message
       validity.message = '';
     }
@@ -179,12 +133,8 @@ class SignUp extends React.Component<any, SignUpStates> {
    * Check for all form control to see if the form is ready for submit.
    */
   private updateReadyForSubmit = () => this.setState({
-    readyForSubmit: this.state.confirmValid
-        && this.state.emailValid
-        && this.state.firstNameValid
-        && this.state.lastNameValid
-        && this.state.passwordValid
+    readyForSubmit: this.state.emailValid
   });
 }
 
-export default SignUp;
+export default ForgetPassword;

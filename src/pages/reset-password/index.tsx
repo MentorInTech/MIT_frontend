@@ -1,15 +1,15 @@
 import * as React from 'react';
 
-import './sign-up.css';
-import { initialState, signUp } from './sign-up';
+import './reset-password.css';
+import { initialState, resetPassword } from './reset-password';
 import InputField from '../../common/forms/input-field'
 import PageFrameSingleForm from '../../common/page-frames/single-form'
 import strings from '../../strings';
 import validate from '../../common/utils/validate';
 
-import { SignUpStates } from '../../../types';
+import { ResetPasswordStates } from '../../../types';
 
-class SignUp extends React.Component<any, SignUpStates> {
+class ResetPassword extends React.Component<any, ResetPasswordStates> {
   constructor(props: any) {
     super(props);
     this.state = initialState;
@@ -26,43 +26,10 @@ class SignUp extends React.Component<any, SignUpStates> {
     return (
       <PageFrameSingleForm
           additionalInfo={formAdditionalInfo}
-          formTitle={strings.texts.CREATE_NEW_ACCOUNT}
+          formTitle={strings.texts.RESET_PASSWORD}
           path="sign-up"
-          title={strings.texts.CREATE_NEW_ACCOUNT}
+          title={strings.texts.RESET_PASSWORD}
       >
-        <InputField
-            disabled={this.state.awaitServer}
-            helpMessage={this.state.firstNameMessage}
-            layoutClassName="column is-6 is-marginless"
-            name="firstName"
-            onBlur={this.handleFocusOut}
-            onChange={this.handleChange}
-            placeholder={strings.texts.FIRST_NAME}
-            type="text"
-        />
-
-        <InputField
-            disabled={this.state.awaitServer}
-            helpMessage={this.state.lastNameMessage}
-            layoutClassName="column is-6 is-marginless"
-            name="lastName"
-            onBlur={this.handleFocusOut}
-            onChange={this.handleChange}
-            placeholder={strings.texts.LAST_NAME}
-            type="text"
-        />
-
-        <InputField
-            disabled={this.state.awaitServer}
-            helpMessage={this.state.emailMessage}
-            layoutClassName="column is-12 is-marginless"
-            name="email"
-            onBlur={this.handleFocusOut}
-            onChange={this.handleChange}
-            placeholder={strings.texts.EMAIL}
-            type="text"
-        />
-
         <InputField
             disabled={this.state.awaitServer}
             helpMessage={this.state.passwordMessage}
@@ -91,9 +58,8 @@ class SignUp extends React.Component<any, SignUpStates> {
               disabled={!this.state.readyForSubmit || this.state.awaitServer}
               onClick={this.handleSubmit}
               type="submit">
-            {strings.texts.CREATE_NEW_ACCOUNT}
+            {strings.texts.RESET_PASSWORD}
           </button>
-          <p id="sign-up-agreement" className="help has-text-grey">{strings.texts.AGREEMENT_STATEMENT}</p>
         </div>
       </PageFrameSingleForm>
     );
@@ -104,9 +70,9 @@ class SignUp extends React.Component<any, SignUpStates> {
    */
   private handleSubmit = () => {
     this.setState({ awaitServer: true }, () => {
-      const { firstName, lastName, email, password } = this.state;
+      const { password } = this.state;
 
-      signUp(firstName, lastName, email, password)
+      resetPassword(password)
           .then()
           .catch(err => {
             console.error(err);
@@ -179,12 +145,8 @@ class SignUp extends React.Component<any, SignUpStates> {
    * Check for all form control to see if the form is ready for submit.
    */
   private updateReadyForSubmit = () => this.setState({
-    readyForSubmit: this.state.confirmValid
-        && this.state.emailValid
-        && this.state.firstNameValid
-        && this.state.lastNameValid
-        && this.state.passwordValid
+    readyForSubmit: this.state.confirmValid && this.state.passwordValid
   });
 }
 
-export default SignUp;
+export default ResetPassword;
