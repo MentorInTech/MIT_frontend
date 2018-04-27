@@ -61,5 +61,6 @@ export interface SignInStates {
   password: string,
   passwordMessage: string,
   passwordValid: boolean,
-  readyForSubmit: boolean
+  readyForSubmit: boolean,
+  signInFailed: boolean
 }

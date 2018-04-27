@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import './sign-up.css';
-import { initialState } from './sign-up';
+import { initialState, signUp } from './sign-up';
 import PageFrame from '../../common/page-frame'
 import InputField from '../../common/forms/input-field'
 import strings from '../../strings';
@@ -85,6 +85,7 @@ class SignUp extends React.Component<any, SignUpStates> {
                     type="submit">
                   {strings.forms.TEXT_CREATE_NEW_ACCOUNT}
                 </button>
+                <p id="sign-up-agreement" className="help has-text-grey-light">{strings.general.TEXT_AGREEMENT_STATEMENT}</p>
               </div>
             </div>
           </div>
@@ -96,7 +97,18 @@ class SignUp extends React.Component<any, SignUpStates> {
   /**
    * Handles submit action; disables all form controls.
    */
-  private handleSubmit = () => this.setState({ awaitServer: true });
+  private handleSubmit = () => {
+    this.setState({ awaitServer: true }, () => {
+      const { firstName, lastName, email, password } = this.state;
+
+      signUp(firstName, lastName, email, password)
+          .then()
+          .catch(err => {
+            console.error(err);
+            this.setState({ awaitServer: false });
+          });
+    });
+  };
 
   /**
    * Handles focus out events for form input elements.

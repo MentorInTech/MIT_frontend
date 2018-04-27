@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import './sign-in.css';
-import { initialState } from './sign-in';
+import { initialState, signIn } from './sign-in';
 import PageFrame from '../../common/page-frame'
 import InputField from '../../common/forms/input-field'
 import strings from '../../strings';
@@ -25,6 +25,7 @@ class SignIn extends React.Component<any, SignInStates> {
               <InputField
                   disabled={this.state.awaitServer}
                   helpMessage={this.state.emailMessage}
+                  inputClassName={this.state.emailBlurredOnce && !this.state.emailValid ? 'is-danger': ''}
                   layoutClassName="column is-12 is-marginless"
                   name="email"
                   onBlur={this.handleFocusOut}
@@ -36,6 +37,7 @@ class SignIn extends React.Component<any, SignInStates> {
               <InputField
                   disabled={this.state.awaitServer}
                   helpMessage={this.state.passwordMessage}
+                  inputClassName={this.state.passwordBlurredOnce && !this.state.passwordValid ? 'is-danger': ''}
                   layoutClassName="column is-12 is-marginless"
                   name="password"
                   onBlur={this.handleFocusOut}
@@ -52,12 +54,19 @@ class SignIn extends React.Component<any, SignInStates> {
                     type="submit">
                   {strings.forms.TEXT_LOG_IN}
                 </button>
+                <p
+                    id="sign-in-forget-password-helper"
+                    className={"help is-danger" + (this.state.signInFailed ? '' : ' is-invisible')}
+                >
+                  {strings.forms.ERROR_PASSWORD_INCORRECT}.&nbsp;
+                  <a className="has-text-danger"><strong>{strings.forms.QUESTION_FORGOT_PASSWORD}</strong></a>
+                </p>
               </div>
             </div>
           </div>
 
           <div id="forget-password-link" className="has-text-centered">
-            <a className="link has-text-primary">Forgot your password?</a>
+            <a className="link has-text-primary">{strings.forms.QUESTION_FORGOT_PASSWORD}</a>
           </div>
         </div>
       </PageFrame>
@@ -67,7 +76,22 @@ class SignIn extends React.Component<any, SignInStates> {
   /**
    * Handles submit action; disables all form controls.
    */
-  private handleSubmit = () => this.setState({ awaitServer: true });
+  private handleSubmit = () => {
+    this.setState({ awaitServer: true }, () => {
+      const { email, password } = this.state;
+
+      signIn(email, password)
+          .catch(message => {
+            console.error(`Sign in failed with message ${message}`);
+            this.setState({
+              awaitServer: false,
+              emailValid: false,
+              passwordValid: false,
+              signInFailed: true
+            });
+          });
+    });
+  };
 
   /**
    * Handles focus out events for form input elements.
@@ -110,10 +134,7 @@ class SignIn extends React.Component<any, SignInStates> {
     const blurredOnce = this.state[`${name}BlurredOnce`];
     const validity = validate(name, value, this.state);
 
-    if (blurredOnce) {
-      // Only show as red if user has visited this input before
-      target.classList.toggle("is-danger", !validity.isValid);
-    } else {
+    if (!blurredOnce) {
       // Don't dipslay the error message
       validity.message = '';
     }

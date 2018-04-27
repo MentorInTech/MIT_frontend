@@ -10,6 +10,10 @@
   max-width: 38rem;
 }
 
+#sign-up-agreement {
+  height: 0;
+}
+
 .button {
   font-size: 1rem !important;
   height: 3.2rem;
