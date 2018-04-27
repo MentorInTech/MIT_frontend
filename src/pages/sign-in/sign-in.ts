@@ -1,23 +1,6 @@
 import { SignInStates } from '../../../types';
 
 /**
- * Initial state of the sign up page
- */
-export const initialState: SignInStates = {
-  awaitServer: false,
-  email: '',
-  emailBlurredOnce: false,
-  emailMessage: '',
-  emailValid: false,
-  password: '',
-  passwordBlurredOnce: false,
-  passwordMessage: '',
-  passwordValid: false,
-  readyForSubmit: false,
-  signInFailed: false
-};
-
-/**
  * Sign-in - requests authentication token from server.
  *
  * @param email User's email
@@ -38,3 +21,20 @@ export function signIn(email: string, password: string): Promise<string> {
     }, 1000);
   });
 }
+
+/**
+ * Initial state of the sign up page
+ */
+export const initialState: SignInStates = {
+  awaitServer: false,
+  email: '',
+  emailBlurredOnce: false,
+  emailMessage: '',
+  emailValid: false,
+  password: '',
+  passwordBlurredOnce: false,
+  passwordMessage: '',
+  passwordValid: false,
+  readyForSubmit: false,
+  signInFailed: false
+};

@@ -7,28 +7,36 @@ import I18n, * as I18nGroups from '../../types/i18n';
  * so that we force every language file to include all translations.
  */
 
-const forms: I18nGroups.Forms = {
-  ERROR_EMAIL_INVALID: 'Please enter a valid e-mail address',
-  ERROR_FIRST_NAME_MISSING: 'Please enter your first name',
-  ERROR_LAST_NAME_MISSING: 'Please enter your last name',
-  ERROR_PASSWORD_INCORRECT: 'The password you entered is incorrect',
-  ERROR_PASSWORD_LENGTH: 'Password must be between 8 and 64-character long',
-  ERROR_PASSWORD_MISMATCH: 'Passwords must match',
-  ERROR_PASSWORD_MISSING: 'Please enter password',
-  QUESTION_FORGOT_PASSWORD: 'Forgot your password?',
-  TEXT_CONFIRM_PASSWORD: 'Confirm password',
-  TEXT_CREATE_NEW_ACCOUNT: 'Create new account',
-  TEXT_EMAIL: 'E-mail',
-  TEXT_FIRST_NAME: 'First name',
-  TEXT_LAST_NAME: 'Last name',
-  TEXT_LOG_IN: 'Log in',
-  TEXT_PASSWORD: 'Password'
+const errors: I18nGroups.Errors = {
+  EMAIL_INVALID: 'Please enter a valid e-mail address',
+  FIRST_NAME_MISSING: 'Please enter your first name',
+  LAST_NAME_MISSING: 'Please enter your last name',
+  PASSWORDS_MUST_MATCH: 'Passwords must match',
+  PASSWORD_INCORRECT: 'The password you entered is incorrect',
+  PASSWORD_LENGTH_INVALID: 'Password must be between 8 and 64-character long',
+  PASSWORD_MISSING: 'Please enter password'
 };
 
-const general: I18nGroups.General = {
-  TEXT_AGREEMENT_STATEMENT: 'By clicking Create account, you agree to the Terms of Use and Privacy Policy.'
+const questions: I18nGroups.Questions = {
+  FORGOT_PASSWORD: 'Forgot password?',
+  FORGOT_YOUR_PASSWORD: 'Forgot your password?'
+}
+
+const texts: I18nGroups.Texts = {
+  AGREEMENT_STATEMENT: 'By clicking Create account, you agree to the Terms of Use and Privacy Policy.',
+  CONFIRM_PASSWORD: 'Confirm password',
+  CREATE_NEW_ACCOUNT: 'Create new account',
+  EMAIL: 'E-mail',
+  FIRST_NAME: 'First name',
+  FORGET_PASSWORD: 'Forget Password',
+  FORGOT_PASSWORD_INSTRUCTIONS: 'Enter the email address you used when you joined and we’ll send you instructions to reset your password.',
+  LAST_NAME: 'Last name',
+  LOG_IN: 'Log in',
+  PASSWORD: 'Password',
+  RESET_PASSWORD: 'Reset password',
+  WELCOME_TO_MIT: 'Welcome to Mentor In Tech'
 };
 
-const english: I18n = { forms, general };
+const english: I18n = { errors, questions, texts };
 
 export default english;
