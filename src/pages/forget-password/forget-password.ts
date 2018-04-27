@@ -1,10 +1,9 @@
 import { ForgetPasswordStates } from '../../../types';
 
 /**
- * Sign-in - requests authentication token from server.
+ * Sends request to server for a reset password link.
  *
  * @param email User's email
- * @param password User's password
  * @return A Promise that resolves if the request was sucessful; rejects with reason if failed
  */
 export function sendResetPasswordEmail(email: string): Promise<string> {
