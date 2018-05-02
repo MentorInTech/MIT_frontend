@@ -30,5 +30,6 @@ export const initialState: ForgetPasswordStates = {
   emailBlurredOnce: false,
   emailMessage: '',
   emailValid: false,
-  readyForSubmit: false
+  readyForSubmit: false,
+  resetEmailSent: false
 };

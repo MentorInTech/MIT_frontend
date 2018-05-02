@@ -6,7 +6,7 @@ import PageFrameGeneric from '../../common/page-frames/generic';
 class Landing extends React.Component {
   public render() {
     return (
-      <PageFrameGeneric title="Create new account">
+      <PageFrameGeneric title="Mentor In Tech">
         <div className="container">
           Welcome!
         </div>

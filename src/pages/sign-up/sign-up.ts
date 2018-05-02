@@ -19,7 +19,8 @@ export function signUp(firstName: string, lastName: string, email: string, passw
 
     console.log('Faking failure');
     setTimeout(() => {
-      reject('Failed to sign up');
+      // reject('Failed to sign up');
+      resolve('test');
     }, 1000);
   });
 }
@@ -49,5 +50,6 @@ export const initialState: SignUpStates = {
   passwordBlurredOnce: false,
   passwordMessage: '',
   passwordValid: false,
-  readyForSubmit: false
+  readyForSubmit: false,
+  signUpSucceeded: false
 };

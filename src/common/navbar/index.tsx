@@ -11,6 +11,8 @@ class Navbar extends React.Component<NavbarProps, NavbarStates> {
   }
 
   public render() {
+    const activeClass = this.state.burgerActive ? 'is-active' : '';
+
     return (
       <nav className="navbar">
         <div className="container">
@@ -20,7 +22,7 @@ class Navbar extends React.Component<NavbarProps, NavbarStates> {
             <a
                 aria-expanded="false"
                 aria-label="menu"
-                className={"navbar-burger has-text-grey-dark" + (this.state.burgerActive ? ' is-active': '')}
+                className={`navbar-burger has-text-grey-dark ${activeClass}`}
                 onClick={this.handleClick}
                 role="button"
             >
@@ -30,7 +32,7 @@ class Navbar extends React.Component<NavbarProps, NavbarStates> {
             </a>
           </div>
 
-          <div id="nav-menu" className={"navbar-menu" + (this.state.burgerActive ? ' is-active': '')}>
+          <div id="nav-menu" className={`navbar-menu ${activeClass}`}>
             <div className="navbar-end">
               <a className="navbar-item is-size-6">Find a mentor</a>
               <a className="navbar-item is-size-6">Become a mentor</a>
@@ -43,8 +45,13 @@ class Navbar extends React.Component<NavbarProps, NavbarStates> {
     );
   }
 
+  public pageClicked = (event: React.MouseEvent<HTMLElement>) => {
+    console.log(event.currentTarget);
+  }
+
   private handleClick = (event: React.MouseEvent<HTMLElement>) =>
       this.setState({ burgerActive: !this.state.burgerActive })
+
 }
 
 export default Navbar;

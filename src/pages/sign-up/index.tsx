@@ -4,6 +4,7 @@ import './sign-up.css';
 import { initialState, signUp } from './sign-up';
 import InputField from '../../common/forms/input-field'
 import PageFrameSingleForm from '../../common/page-frames/single-form'
+import SignUpConfirmation from './sign-up-confirmation';
 import strings from '../../strings';
 import validate from '../../common/utils/validate';
 
@@ -16,6 +17,10 @@ class SignUp extends React.Component<any, SignUpStates> {
   }
 
   public render() {
+    if (this.state.signUpSucceeded) {
+      return <SignUpConfirmation />;
+    }
+
     const formAdditionalInfo = (
       <span>
         Already have an account?&nbsp;
@@ -107,7 +112,10 @@ class SignUp extends React.Component<any, SignUpStates> {
       const { firstName, lastName, email, password } = this.state;
 
       signUp(firstName, lastName, email, password)
-          .then()
+          .then(() => {
+            console.log('test');
+            this.setState({ signUpSucceeded: true });
+          })
           .catch(err => {
             console.error(err);
             this.setState({ awaitServer: false });

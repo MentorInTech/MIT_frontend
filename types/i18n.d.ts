@@ -26,6 +26,8 @@ export interface Texts extends I18nGroup {
   LOG_IN: string,
   PASSWORD: string,
   RESET_PASSWORD: string,
+  VERIFY_EMAIL: string,
+  VERIFY_INSTRUCTIONS: string,
   WELCOME_TO_MIT: string
 }
 
