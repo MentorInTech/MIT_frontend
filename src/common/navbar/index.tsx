@@ -45,13 +45,8 @@ class Navbar extends React.Component<NavbarProps, NavbarStates> {
     );
   }
 
-  public pageClicked = (event: React.MouseEvent<HTMLElement>) => {
-    console.log(event.currentTarget);
-  }
-
   private handleClick = (event: React.MouseEvent<HTMLElement>) =>
       this.setState({ burgerActive: !this.state.burgerActive })
-
 }
 
 export default Navbar;
