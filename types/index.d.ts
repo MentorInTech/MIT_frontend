@@ -54,7 +54,8 @@ export interface SignUpStates {
   passwordBlurredOnce: boolean,
   passwordMessage: string,
   passwordValid: boolean,
-  readyForSubmit: boolean
+  readyForSubmit: boolean,
+  signUpSucceeded: boolean
 }
 
 export interface SignInStates {
@@ -77,7 +78,8 @@ export interface ForgetPasswordStates {
   emailBlurredOnce: boolean,
   emailMessage: string,
   emailValid: boolean,
-  readyForSubmit: boolean
+  readyForSubmit: boolean,
+  resetEmailSent: boolean
 }
 
 export interface ResetPasswordStates {

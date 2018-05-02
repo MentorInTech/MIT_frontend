@@ -4,6 +4,7 @@ import './forget-password.css';
 import { initialState, sendResetPasswordEmail } from './forget-password';
 import InputField from '../../common/forms/input-field'
 import PageFrameSingleForm from '../../common/page-frames/single-form';
+import ForgetPasswordResetEmailSent from './forget-password-reset-email-sent';
 import strings from '../../strings';
 import validate from '../../common/utils/validate';
 
@@ -16,6 +17,20 @@ class ForgetPassword extends React.Component<any, ForgetPasswordStates> {
   }
 
   public render() {
+    /**
+     * Re-render with ForgetPasswordResetEmailSent view
+     *
+     * This is a very naive setup just to make sure the Reset Email page is
+     * never directly accessible (it could be, but may confuse user if the user
+     * bookmarked it).
+     *
+     * TODO Separate the forget password form into its own file and import it.
+     */
+    if (this.state.resetEmailSent) {
+      return <ForgetPasswordResetEmailSent />;
+    }
+
+    // Regular page load on /forget-password endpoint
     const formAdditionalInfo = (
       <span>
         Already have an account?&nbsp;
@@ -65,9 +80,7 @@ class ForgetPassword extends React.Component<any, ForgetPasswordStates> {
       sendResetPasswordEmail(email)
           .then(message => {
             console.log(`Reset email sent with message ${message}`);
-            this.setState({
-              awaitServer: false,
-            });
+            this.setState({ resetEmailSent: true });
           });
     });
   };

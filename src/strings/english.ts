@@ -34,6 +34,8 @@ const texts: I18nGroups.Texts = {
   LOG_IN: 'Log in',
   PASSWORD: 'Password',
   RESET_PASSWORD: 'Reset password',
+  VERIFY_EMAIL: 'Verify e-mail',
+  VERIFY_INSTRUCTIONS: 'Please check your email and follow the instructions.',
   WELCOME_TO_MIT: 'Welcome to Mentor In Tech'
 };
 
